@@ -8,11 +8,61 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at top left, #0f0f0f, #000);
+      background: #000;
       color: white;
       scroll-behavior: smooth;
       line-height: 1.6;
+      overflow-x: hidden;
     }
+
+    /* Hero Background Animation */
+    .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at center, #9333ea55, transparent 70%),
+                  radial-gradient(circle at top left, #ec489955, transparent 70%),
+                  radial-gradient(circle at bottom right, #ef444455, transparent 70%);
+      animation: animateBg 15s linear infinite;
+      z-index: 0;
+    }
+    @keyframes animateBg {
+      0% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(-25%, -25%) scale(1.2); }
+      100% { transform: translate(0,0) scale(1); }
+    }
+
+    /* Floating Particles */
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      top: 0; left: 0;
+      z-index: 0;
+    }
+    .particle {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: floatParticles linear infinite;
+    }
+    @keyframes floatParticles {
+      from { transform: translateY(100vh); opacity: 0; }
+      to { transform: translateY(-10vh); opacity: 1; }
+    }
+
     header {
       position: fixed;
       top: 0; left: 0;
@@ -23,7 +73,7 @@
       padding: 15px;
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255,255,255,0.1);
-      z-index: 100;
+      z-index: 1000;
     }
     header a {
       margin: 0 20px;
@@ -45,27 +95,26 @@
     }
     header a:hover::after { width: 100%; }
 
-    section { padding: 120px 20px; min-height: 100vh; text-align: center; }
+    section { padding: 120px 20px; min-height: 100vh; text-align: center; position: relative; z-index: 1; }
     h1, h2 { margin-bottom: 20px; }
 
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      animation: fadeIn 2s ease-in-out;
-    }
     .hero h1 {
       font-size: 3.5rem;
       background: linear-gradient(90deg,#a855f7,#ec4899,#ef4444);
       -webkit-background-clip: text;
       color: transparent;
       animation: slideDown 1s ease;
+      z-index: 1;
+      position: relative;
+      text-shadow: 0 0 15px rgba(168,85,247,0.6);
     }
     .hero p {
       font-size: 1.2rem;
       max-width: 600px;
       animation: slideUp 1s ease;
+      z-index: 1;
+      position: relative;
+      opacity: 0.9;
     }
     .button {
       display: inline-block;
@@ -78,6 +127,8 @@
       color: white;
       box-shadow: 0 0 20px rgba(236,72,153,0.6);
       transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 1;
+      position: relative;
     }
     .button:hover {
       transform: translateY(-5px) scale(1.05);
@@ -96,6 +147,7 @@
       border-radius: 16px;
       backdrop-filter: blur(5px);
       transition: transform 0.4s, box-shadow 0.4s;
+      border: 1px solid rgba(255,255,255,0.1);
     }
     .project-card:hover {
       transform: translateY(-10px) scale(1.05);
@@ -119,7 +171,6 @@
       opacity: 0.7;
     }
 
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
     @keyframes slideDown { from {opacity: 0; transform: translateY(-50px);} to {opacity:1; transform:translateY(0);} }
     @keyframes slideUp { from {opacity:0; transform:translateY(50px);} to {opacity:1; transform:translateY(0);} }
   </style>
@@ -133,6 +184,9 @@
   </header>
 
   <section class="hero" id="hero">
+    <div class="particles">
+      <!-- Particles dynamically generated -->
+    </div>
     <h1>Hi, I'm Shreyas 👋</h1>
     <p>13 y/o tech enthusiast 🚀 I code, build Discord bots, edit videos, and design websites with creativity & futuristic style.</p>
     <a href="#projects" class="button">Explore My Work</a>
@@ -166,5 +220,20 @@
   <footer>
     © <script>document.write(new Date().getFullYear());</script> Shreyas | Crafted with ⚡ Tech + ❤️ Passion
   </footer>
+
+  <script>
+    // Generate random particles
+    const container = document.querySelector('.particles');
+    for(let i=0; i<40; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      const size = Math.random() * 4 + 2;
+      particle.style.width = size+'px';
+      particle.style.height = size+'px';
+      particle.style.left = Math.random()*100+'%';
+      particle.style.animationDuration = (5+Math.random()*10)+'s';
+      container.appendChild(particle);
+    }
+  </script>
 </body>
 </html>
