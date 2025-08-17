@@ -4,80 +4,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shreyas Portfolio</title>
-  
+
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Animate.css for ready-made animations -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  
-  <!-- AOS Library for scroll animations -->
+
+  <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
+
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
+  <!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
   <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { overflow-x: hidden; scroll-behavior: smooth; background: #0a0a0a; color: #fff; }
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+    html {scroll-behavior: smooth;}
+    body {background:#0a0a0a; color:#fff; overflow-x:hidden;}
 
     /* Navbar */
     nav {
-      position: fixed; top: 0; left: 0; width: 100%; background: rgba(0,0,0,0.85); padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 999; backdrop-filter: blur(10px);
+      position: fixed; top:0; left:0; width:100%; background: rgba(0,0,0,0.85);
+      padding:15px 50px; display:flex; justify-content:space-between; align-items:center; z-index:999;
+      backdrop-filter: blur(10px); transition: 0.3s;
     }
-    nav .logo { font-size: 24px; font-weight: 700; color: #FFD700; letter-spacing: 2px; }
-    nav ul { list-style: none; display: flex; gap: 30px; }
-    nav ul li a { color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s; }
-    nav ul li a:hover { color: #FFD700; transform: scale(1.1); }
+    nav .logo {font-size: 26px; font-weight: 700; color:#FFD700;}
+    nav ul {list-style:none; display:flex; gap:30px;}
+    nav ul li a {color:#fff; text-decoration:none; font-weight:500; transition:0.3s;}
+    nav ul li a:hover {color:#FFD700; transform:scale(1.1);}
+    nav.scrolled {background: rgba(10,10,10,0.95); padding:10px 50px; box-shadow:0 5px 15px rgba(0,0,0,0.5);}
 
-    /* Hero Section */
+    /* Hero */
     .hero {
-      height: 100vh; background: url('https://images.unsplash.com/photo-1522199710521-72d69614c702?fit=crop&w=1950&q=80') center/cover no-repeat;
-      display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative;
+      position: relative; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; background: url('https://images.unsplash.com/photo-1522199710521-72d69614c702?fit=crop&w=1950&q=80') center/cover no-repeat;
     }
     .hero::after {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6);
+      content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6);
     }
-    .hero h1 { color: #FFD700; font-size: 60px; z-index: 1; animation: fadeInDown 2s ease forwards; }
-    .hero p { color: #fff; font-size: 20px; margin-top: 15px; z-index: 1; animation: fadeInUp 2s ease forwards; }
+    .hero h1 {font-size:60px; color:#FFD700; z-index:1; animation:fadeInDown 2s ease forwards;}
+    .hero .typed {color:#fff; font-size:24px; margin-top:20px; z-index:1;}
+    .hero audio {margin-top:30px; border-radius:15px; z-index:1; outline:none;}
 
     /* Sections */
-    section { padding: 100px 50px; }
-    section h2 { font-size: 40px; color: #FFD700; margin-bottom: 50px; text-align: center; }
-
+    section {padding:120px 50px; position:relative;}
+    section h2 {font-size:40px; color:#FFD700; margin-bottom:50px; text-align:center;}
+    
     /* About */
-    .about { background: #111; text-align: center; }
-    .about p { max-width: 800px; margin: 0 auto; font-size: 18px; line-height: 1.8; }
+    .about {background:#111; text-align:center;}
+    .about p {max-width:800px; margin:0 auto; font-size:18px; line-height:1.8;}
 
     /* Projects */
-    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-    .project-card { background: #222; padding: 20px; border-radius: 15px; transition: transform 0.4s, box-shadow 0.4s; }
-    .project-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(255, 215, 0, 0.5); }
+    .projects {display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:30px;}
+    .project-card {
+      background:#222; padding:25px; border-radius:15px; transition: transform 0.5s, box-shadow 0.5s;
+      overflow:hidden; position:relative;
+    }
+    .project-card:hover {transform:translateY(-10px); box-shadow:0 15px 30px rgba(255,215,0,0.5);}
+    .project-card::before {
+      content:''; position:absolute; top:0; left:0; width:0%; height:100%; background:rgba(255,215,0,0.1); transition:0.5s; z-index:0;
+    }
+    .project-card:hover::before {width:100%;}
 
     /* Contact */
-    .contact { text-align: center; }
-    .contact a { display: inline-block; margin: 10px; color: #fff; font-size: 30px; transition: 0.3s; }
-    .contact a:hover { color: #FFD700; transform: scale(1.2); }
+    .contact {text-align:center;}
+    .contact a {display:inline-block; margin:10px; color:#fff; font-size:30px; transition:0.3s;}
+    .contact a:hover {color:#FFD700; transform:scale(1.3);}
 
     /* Footer */
-    footer { background: #111; text-align: center; padding: 20px; color: #888; }
+    footer {background:#111; text-align:center; padding:25px; color:#888;}
 
     /* Animations */
     @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-50px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% {opacity:0; transform:translateY(-50px);}
+      100% {opacity:1; transform:translateY(0);}
     }
     @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(50px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% {opacity:0; transform:translateY(50px);}
+      100% {opacity:1; transform:translateY(0);}
     }
+
+    /* Particles background */
+    #particles-js {position:absolute; width:100%; height:100%; top:0; left:0; z-index:0;}
+
+    /* Responsive */
+    @media(max-width:768px){.hero h1{font-size:40px;}.hero .typed{font-size:18px;}}
   </style>
 </head>
 <body>
 
   <!-- Navbar -->
-  <nav>
+  <nav id="navbar">
     <div class="logo">Shreyas</div>
     <ul>
       <li><a href="#hero">Home</a></li>
@@ -87,42 +107,43 @@
     </ul>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero" id="hero">
-    <h1 class="animate__animated animate__fadeInDown">Hello, I'm Shreyas</h1>
-    <p class="animate__animated animate__fadeInUp">A passionate coder & designer | Tech Enthusiast</p>
-    <audio controls autoplay loop style="margin-top:30px; border-radius:15px;">
+    <div id="particles-js"></div>
+    <h1 class="animate__animated animate__fadeInDown">Hi, I'm Shreyas</h1>
+    <span class="typed"></span>
+    <audio autoplay loop controls>
       <source src="golden_hour_instrumental.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
   </section>
 
-  <!-- About Section -->
+  <!-- About -->
   <section class="about" id="about" data-aos="fade-up">
     <h2>About Me</h2>
     <p>
-      I am Shreyas, a passionate coder and creative designer, constantly exploring new technologies and pushing the boundaries of digital art. I love combining sleek UI, engaging animations, and innovative ideas to build unforgettable web experiences.
+      I'm Shreyas, a passionate coder and creative designer. I love combining sleek UI, animations, and innovative ideas to build unforgettable digital experiences. I explore front-end technologies, animations, and web interactivity every day.
     </p>
   </section>
 
-  <!-- Projects Section -->
+  <!-- Projects -->
   <section class="projects" id="projects" data-aos="fade-up">
     <h2>My Projects</h2>
     <div class="project-card animate__animated animate__zoomIn">
       <h3>Project One</h3>
-      <p>A web project with stunning animations and responsive design.</p>
+      <p>Interactive web project with stunning animations and responsive design.</p>
     </div>
-    <div class="project-card animate__animated animate__zoomIn" style="animation-delay: 0.2s;">
+    <div class="project-card animate__animated animate__zoomIn" style="animation-delay:0.2s;">
       <h3>Project Two</h3>
-      <p>An interactive dashboard combining charts and real-time data.</p>
+      <p>Dynamic dashboard combining charts, effects, and real-time data.</p>
     </div>
-    <div class="project-card animate__animated animate__zoomIn" style="animation-delay: 0.4s;">
+    <div class="project-card animate__animated animate__zoomIn" style="animation-delay:0.4s;">
       <h3>Project Three</h3>
-      <p>A creative portfolio demonstrating cutting-edge web effects.</p>
+      <p>Portfolio demonstrating cutting-edge web effects and interactivity.</p>
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section class="contact" id="contact" data-aos="fade-up">
     <h2>Contact Me</h2>
     <a href="https://discord.com/users/just_in1.1" target="_blank"><i class="fab fa-discord"></i></a>
@@ -134,11 +155,37 @@
     &copy; 2025 Shreyas | All Rights Reserved
   </footer>
 
-  <!-- JS Libraries -->
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 1200, once: true });
-  </script>
+    AOS.init({ duration:1200, once:true });
 
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Typed.js
+    new Typed('.typed', {
+      strings: ["Front-end Developer", "Creative Designer", "Tech Enthusiast"],
+      typeSpeed: 60,
+      backSpeed: 50,
+      loop: true
+    });
+
+    // Particles.js
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80 },
+        "color": { "value": "#FFD700" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3 },
+        "line_linked": { "enable": true, "distance": 150, "color": "#FFD700", "opacity":0.3, "width":1 },
+        "move": { "enable": true, "speed": 2 }
+      }
+    });
+  </script>
 </body>
 </html>
