@@ -5,85 +5,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shreyas Portfolio</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #1f1f1f, #000);
+      background: radial-gradient(circle at top left, #0f0f0f, #000);
       color: white;
       scroll-behavior: smooth;
+      line-height: 1.6;
     }
     header {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.8);
       display: flex;
       justify-content: center;
       padding: 15px;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       z-index: 100;
     }
     header a {
-      margin: 0 15px;
+      margin: 0 20px;
       text-decoration: none;
-      color: white;
+      color: #fff;
       font-weight: bold;
-      transition: color 0.3s;
+      font-size: 1rem;
+      position: relative;
     }
-    header a:hover { color: #ff4ddb; }
-    section { padding: 100px 20px; min-height: 100vh; text-align: center; }
+    header a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg,#9333ea,#ec4899,#ef4444);
+      transition: 0.4s;
+    }
+    header a:hover::after { width: 100%; }
+
+    section { padding: 120px 20px; min-height: 100vh; text-align: center; }
     h1, h2 { margin-bottom: 20px; }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 2s ease-in-out;
+    }
     .hero h1 {
-      font-size: 3rem;
-      background: linear-gradient(to right, #a855f7, #ec4899, #ef4444);
+      font-size: 3.5rem;
+      background: linear-gradient(90deg,#a855f7,#ec4899,#ef4444);
       -webkit-background-clip: text;
       color: transparent;
-      animation: fadeInDown 1.2s;
+      animation: slideDown 1s ease;
     }
-    .hero p { animation: fadeInUp 1.2s; }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      animation: slideUp 1s ease;
+    }
     .button {
       display: inline-block;
       margin-top: 30px;
-      padding: 15px 30px;
-      background: linear-gradient(to right, #9333ea, #ec4899);
-      border-radius: 12px;
+      padding: 15px 35px;
+      background: linear-gradient(90deg,#9333ea,#ec4899);
+      border-radius: 50px;
       font-weight: bold;
       text-decoration: none;
       color: white;
-      transition: transform 0.2s;
+      box-shadow: 0 0 20px rgba(236,72,153,0.6);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .button:hover { transform: scale(1.1); }
+    .button:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 30px rgba(236,72,153,0.9);
+    }
+
     .projects {
-      display: flex;
-      overflow-x: auto;
-      gap: 20px;
-      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 25px;
+      margin-top: 40px;
     }
     .project-card {
-      min-width: 280px;
-      background: rgba(255,255,255,0.1);
-      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      padding: 25px;
       border-radius: 16px;
-      transition: transform 0.3s;
+      backdrop-filter: blur(5px);
+      transition: transform 0.4s, box-shadow 0.4s;
     }
-    .project-card:hover { transform: scale(1.05); }
-    footer {
-      padding: 20px;
-      text-align: center;
-      border-top: 1px solid #333;
-      font-size: 0.9rem;
-      opacity: 0.7;
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.6);
     }
+
     .socials a {
-      margin: 0 10px;
+      margin: 0 15px;
+      font-size: 1.2rem;
       color: white;
       text-decoration: none;
       transition: color 0.3s;
     }
     .socials a:hover { color: #ec4899; }
-    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-50px);} to { opacity: 1; transform: translateY(0);} }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px);} to { opacity: 1; transform: translateY(0);} }
+
+    footer {
+      padding: 25px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    @keyframes slideDown { from {opacity: 0; transform: translateY(-50px);} to {opacity:1; transform:translateY(0);} }
+    @keyframes slideUp { from {opacity:0; transform:translateY(50px);} to {opacity:1; transform:translateY(0);} }
   </style>
 </head>
 <body>
@@ -96,13 +134,13 @@
 
   <section class="hero" id="hero">
     <h1>Hi, I'm Shreyas 👋</h1>
-    <p>13 y/o tech enthusiast 🚀 I code, build Discord bots, edit videos, and design websites with creativity & style.</p>
+    <p>13 y/o tech enthusiast 🚀 I code, build Discord bots, edit videos, and design websites with creativity & futuristic style.</p>
     <a href="#projects" class="button">Explore My Work</a>
   </section>
 
   <section id="about">
     <h2>About Me</h2>
-    <p>I love experimenting with code and tech. From building Discord bots 🤖 that make servers fun, to designing futuristic websites 🌐, and editing cinematic videos 🎬 — I do it all with passion and creativity.</p>
+    <p>I’m a passionate creator who codes, edits, and innovates. From Discord bots 🤖 that add fun, to futuristic websites 🌐 and cinematic edits 🎬 — I love turning ideas into reality.</p>
   </section>
 
   <section id="projects">
@@ -120,8 +158,8 @@
     <p>Want to collaborate, share ideas, or just say hi? Reach out!</p>
     <div class="socials">
       <a href="mailto:shreyas@example.com">📧 Email</a>
-      <a href="https://discord.com/users/just_in1.1" target="_blank">💬 Discord: just_in1.1</a>
-      <a href="https://instagram.com/l.lionss" target="_blank">📸 Instagram: l.lionss</a>
+      <a href="https://discord.com/users/just_in1.1" target="_blank">💬 Discord</a>
+      <a href="https://instagram.com/l.lionss" target="_blank">📸 Instagram</a>
     </div>
   </section>
 
