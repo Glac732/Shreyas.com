@@ -1,191 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shreyas Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shreyas Ultimate Portfolio</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
-  <!-- Animate.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
-  <!-- Typed.js -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
-  <style>
-    * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
-    html {scroll-behavior: smooth;}
-    body {background:#0a0a0a; color:#fff; overflow-x:hidden;}
-
-    /* Navbar */
-    nav {
-      position: fixed; top:0; left:0; width:100%; background: rgba(0,0,0,0.85);
-      padding:15px 50px; display:flex; justify-content:space-between; align-items:center; z-index:999;
-      backdrop-filter: blur(10px); transition: 0.3s;
-    }
-    nav .logo {font-size: 26px; font-weight: 700; color:#FFD700;}
-    nav ul {list-style:none; display:flex; gap:30px;}
-    nav ul li a {color:#fff; text-decoration:none; font-weight:500; transition:0.3s;}
-    nav ul li a:hover {color:#FFD700; transform:scale(1.1);}
-    nav.scrolled {background: rgba(10,10,10,0.95); padding:10px 50px; box-shadow:0 5px 15px rgba(0,0,0,0.5);}
-
-    /* Hero */
-    .hero {
-      position: relative; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
-      text-align:center; background: url('https://images.unsplash.com/photo-1522199710521-72d69614c702?fit=crop&w=1950&q=80') center/cover no-repeat;
-    }
-    .hero::after {
-      content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6);
-    }
-    .hero h1 {font-size:60px; color:#FFD700; z-index:1; animation:fadeInDown 2s ease forwards;}
-    .hero .typed {color:#fff; font-size:24px; margin-top:20px; z-index:1;}
-    .hero audio {margin-top:30px; border-radius:15px; z-index:1; outline:none;}
-
-    /* Sections */
-    section {padding:120px 50px; position:relative;}
-    section h2 {font-size:40px; color:#FFD700; margin-bottom:50px; text-align:center;}
-    
-    /* About */
-    .about {background:#111; text-align:center;}
-    .about p {max-width:800px; margin:0 auto; font-size:18px; line-height:1.8;}
-
-    /* Projects */
-    .projects {display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:30px;}
-    .project-card {
-      background:#222; padding:25px; border-radius:15px; transition: transform 0.5s, box-shadow 0.5s;
-      overflow:hidden; position:relative;
-    }
-    .project-card:hover {transform:translateY(-10px); box-shadow:0 15px 30px rgba(255,215,0,0.5);}
-    .project-card::before {
-      content:''; position:absolute; top:0; left:0; width:0%; height:100%; background:rgba(255,215,0,0.1); transition:0.5s; z-index:0;
-    }
-    .project-card:hover::before {width:100%;}
-
-    /* Contact */
-    .contact {text-align:center;}
-    .contact a {display:inline-block; margin:10px; color:#fff; font-size:30px; transition:0.3s;}
-    .contact a:hover {color:#FFD700; transform:scale(1.3);}
-
-    /* Footer */
-    footer {background:#111; text-align:center; padding:25px; color:#888;}
-
-    /* Animations */
-    @keyframes fadeInDown {
-      0% {opacity:0; transform:translateY(-50px);}
-      100% {opacity:1; transform:translateY(0);}
-    }
-    @keyframes fadeInUp {
-      0% {opacity:0; transform:translateY(50px);}
-      100% {opacity:1; transform:translateY(0);}
-    }
-
-    /* Particles background */
-    #particles-js {position:absolute; width:100%; height:100%; top:0; left:0; z-index:0;}
-
-    /* Responsive */
-    @media(max-width:768px){.hero h1{font-size:40px;}.hero .typed{font-size:18px;}}
-  </style>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+  html{scroll-behavior:smooth;}
+  body{background:#0a0a0a;color:#fff;overflow-x:hidden;}
+  nav{position:fixed;top:0;width:100%;background:rgba(0,0,0,0.85);padding:15px 50px;display:flex;justify-content:space-between;align-items:center;z-index:999;backdrop-filter:blur(10px);}
+  nav .logo{font-size:26px;color:#FFD700;font-weight:700;}
+  nav ul{display:flex;list-style:none;gap:30px;}
+  nav ul li a{color:#fff;text-decoration:none;transition:0.3s;font-weight:500;}
+  nav ul li a:hover{color:#FFD700;transform:scale(1.1);}
+  nav.scrolled{background:rgba(10,10,10,0.95);padding:10px 50px;box-shadow:0 5px 15px rgba(0,0,0,0.5);}
+  section{padding:120px 50px;position:relative;}
+  h2{color:#FFD700;text-align:center;margin-bottom:50px;font-size:40px;}
+  .hero{position:relative;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:#111;}
+  .hero audio{margin-top:30px;border-radius:15px;outline:none;}
+  .typed{color:#fff;font-size:24px;margin-top:20px;}
+  .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;}
+  .project-card{background:#222;padding:25px;border-radius:15px;transition:0.5s;position:relative;overflow:hidden;}
+  .project-card:hover{transform:translateY(-10px);box-shadow:0 15px 30px rgba(255,215,0,0.5);}
+  footer{background:#111;text-align:center;padding:25px;color:#888;}
+</style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav id="navbar">
-    <div class="logo">Shreyas</div>
-    <ul>
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<nav id="navbar">
+  <div class="logo">Shreyas</div>
+  <ul>
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- Hero -->
-  <section class="hero" id="hero">
-    <div id="particles-js"></div>
-    <h1 class="animate__animated animate__fadeInDown">Hi, I'm Shreyas</h1>
-    <span class="typed"></span>
-    <audio autoplay loop controls>
-      <source src="golden_hour_instrumental.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </section>
+<section class="hero" id="hero">
+  <h1 class="animate__animated animate__fadeInDown">Ultimate Shreyas Portfolio</h1>
+  <span class="typed"></span>
+  <audio autoplay loop controls>
+    <source src="golden_hour_instrumental.mp3" type="audio/mpeg">
+  </audio>
+</section>
 
-  <!-- About -->
-  <section class="about" id="about" data-aos="fade-up">
-    <h2>About Me</h2>
-    <p>
-      I'm Shreyas, a passionate coder and creative designer. I love combining sleek UI, animations, and innovative ideas to build unforgettable digital experiences. I explore front-end technologies, animations, and web interactivity every day.
-    </p>
-  </section>
+<section id="about" data-aos="fade-up">
+  <h2>About Me</h2>
+  <p style="max-width:800px;margin:0 auto;text-align:center;">I'm Shreyas, master of code, design, and interactivity. This page dynamically generates thousands of animated elements to create a truly insane experience.</p>
+</section>
 
-  <!-- Projects -->
-  <section class="projects" id="projects" data-aos="fade-up">
-    <h2>My Projects</h2>
-    <div class="project-card animate__animated animate__zoomIn">
-      <h3>Project One</h3>
-      <p>Interactive web project with stunning animations and responsive design.</p>
-    </div>
-    <div class="project-card animate__animated animate__zoomIn" style="animation-delay:0.2s;">
-      <h3>Project Two</h3>
-      <p>Dynamic dashboard combining charts, effects, and real-time data.</p>
-    </div>
-    <div class="project-card animate__animated animate__zoomIn" style="animation-delay:0.4s;">
-      <h3>Project Three</h3>
-      <p>Portfolio demonstrating cutting-edge web effects and interactivity.</p>
-    </div>
-  </section>
+<section class="projects" id="projects" data-aos="fade-up">
+  <h2>Projects</h2>
+  <div id="project-container"></div>
+</section>
 
-  <!-- Contact -->
-  <section class="contact" id="contact" data-aos="fade-up">
-    <h2>Contact Me</h2>
-    <a href="https://discord.com/users/just_in1.1" target="_blank"><i class="fab fa-discord"></i></a>
-    <a href="https://instagram.com/l.lionss" target="_blank"><i class="fab fa-instagram"></i></a>
-  </section>
+<section class="contact" id="contact" data-aos="fade-up">
+  <h2>Contact Me</h2>
+  <a href="https://discord.com/users/just_in1.1" target="_blank"><i class="fab fa-discord"></i></a>
+  <a href="https://instagram.com/l.lionss" target="_blank"><i class="fab fa-instagram"></i></a>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Shreyas | All Rights Reserved
-  </footer>
+<footer>&copy; 2025 Shreyas | All Rights Reserved</footer>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration:1200, once:true });
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-    });
+<script>
+AOS.init({duration:1200,once:true});
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);});
 
-    // Typed.js
-    new Typed('.typed', {
-      strings: ["Front-end Developer", "Creative Designer", "Tech Enthusiast"],
-      typeSpeed: 60,
-      backSpeed: 50,
-      loop: true
-    });
+new Typed('.typed',{
+  strings:["Front-end Developer","Creative Designer","Tech Genius","Animation Wizard"],
+  typeSpeed:60,backSpeed:50,loop:true
+});
 
-    // Particles.js
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 80 },
-        "color": { "value": "#FFD700" },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5 },
-        "size": { "value": 3 },
-        "line_linked": { "enable": true, "distance": 150, "color": "#FFD700", "opacity":0.3, "width":1 },
-        "move": { "enable": true, "speed": 2 }
-      }
-    });
-  </script>
+// Dynamically generate 1000+ project cards
+const projectContainer = document.getElementById('project-container');
+for(let i=1;i<=1000;i++){
+  let card = document.createElement('div');
+  card.className = 'project-card animate__animated animate__zoomIn';
+  card.style.animationDelay = (i*0.01)+'s';
+  card.innerHTML = `<h3>Project #${i}</h3><p>This is dynamically generated project number ${i} with insane animations.</p>`;
+  projectContainer.appendChild(card);
+}
+
+// Infinite animation background using canvas
+const canvas=document.createElement('canvas');
+canvas.style.position='fixed';canvas.style.top='0';canvas.style.left='0';
+canvas.style.width='100%';canvas.style.height='100%';canvas.style.zIndex='-1';
+document.body.appendChild(canvas);
+const ctx=canvas.getContext('2d');let particles=[];
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+window.addEventListener('resize',resizeCanvas);resizeCanvas();
+for(let i=0;i<500;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*3+1,dx:(Math.random()-0.5)*2,dy:(Math.random()-0.5)*2})}
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for(let p of particles){
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,215,0,0.7)';ctx.fill();
+    p.x+=p.dx;p.y+=p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+</script>
+
 </body>
 </html>
