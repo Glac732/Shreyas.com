@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shreyas Ultimate Portfolio</title>
+<title>Shreyas Portfolio</title>
 
-<!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Animate.css -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -15,25 +14,47 @@
 <!-- AOS -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+<!-- Typed.js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
   html{scroll-behavior:smooth;}
   body{background:#0a0a0a;color:#fff;overflow-x:hidden;}
+
   nav{position:fixed;top:0;width:100%;background:rgba(0,0,0,0.85);padding:15px 50px;display:flex;justify-content:space-between;align-items:center;z-index:999;backdrop-filter:blur(10px);}
   nav .logo{font-size:26px;color:#FFD700;font-weight:700;}
   nav ul{display:flex;list-style:none;gap:30px;}
   nav ul li a{color:#fff;text-decoration:none;transition:0.3s;font-weight:500;}
   nav ul li a:hover{color:#FFD700;transform:scale(1.1);}
   nav.scrolled{background:rgba(10,10,10,0.95);padding:10px 50px;box-shadow:0 5px 15px rgba(0,0,0,0.5);}
+
   section{padding:120px 50px;position:relative;}
   h2{color:#FFD700;text-align:center;margin-bottom:50px;font-size:40px;}
-  .hero{position:relative;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:#111;}
-  .hero audio{margin-top:30px;border-radius:15px;outline:none;}
-  .typed{color:#fff;font-size:24px;margin-top:20px;}
+
+  .hero{position:relative;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background: url('https://images.unsplash.com/photo-1522199710521-72d69614c702?fit=crop&w=1950&q=80') center/cover no-repeat;}
+  .hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);}
+  .hero h1{font-size:60px;color:#FFD700;z-index:1;animation:fadeInDown 2s ease forwards;}
+  .typed{color:#fff;font-size:24px;margin-top:20px;z-index:1;}
+  .play-btn{padding:15px 30px;font-size:18px;border:none;border-radius:10px;background:#FFD700;color:#000;cursor:pointer;margin-top:30px;z-index:1;}
+
+  .about{text-align:center;background:#111;}
+  .about p{max-width:800px;margin:0 auto;font-size:18px;line-height:1.8;}
+
   .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;}
   .project-card{background:#222;padding:25px;border-radius:15px;transition:0.5s;position:relative;overflow:hidden;}
   .project-card:hover{transform:translateY(-10px);box-shadow:0 15px 30px rgba(255,215,0,0.5);}
+
+  .contact{text-align:center;}
+  .contact a{display:inline-block;margin:10px;color:#fff;font-size:30px;transition:0.3s;}
+  .contact a:hover{color:#FFD700;transform:scale(1.3);}
+
   footer{background:#111;text-align:center;padding:25px;color:#888;}
+
+  @keyframes fadeInDown{0%{opacity:0;transform:translateY(-50px);}100%{opacity:1;transform:translateY(0);}}
 </style>
 </head>
 <body>
@@ -51,19 +72,31 @@
 <section class="hero" id="hero">
   <h1 class="animate__animated animate__fadeInDown">Ultimate Shreyas Portfolio</h1>
   <span class="typed"></span>
-  <audio autoplay loop controls>
+  <button id="playMusic" class="play-btn">Play Music 🎵</button>
+  <audio id="bgMusic" loop>
     <source src="golden_hour_instrumental.mp3" type="audio/mpeg">
   </audio>
 </section>
 
-<section id="about" data-aos="fade-up">
+<section class="about" id="about" data-aos="fade-up">
   <h2>About Me</h2>
-  <p style="max-width:800px;margin:0 auto;text-align:center;">I'm Shreyas, master of code, design, and interactivity. This page dynamically generates thousands of animated elements to create a truly insane experience.</p>
+  <p>I'm Shreyas, a passionate coder and designer. I create sleek, animated web experiences that impress and inspire.</p>
 </section>
 
 <section class="projects" id="projects" data-aos="fade-up">
   <h2>Projects</h2>
-  <div id="project-container"></div>
+  <div class="project-card">
+    <h3>Project One</h3>
+    <p>A stunning interactive web project with modern animations.</p>
+  </div>
+  <div class="project-card">
+    <h3>Project Two</h3>
+    <p>Creative design portfolio showcasing unique ideas and UI effects.</p>
+  </div>
+  <div class="project-card">
+    <h3>Project Three</h3>
+    <p>Dynamic project with responsive layout and hover effects.</p>
+  </div>
 </section>
 
 <section class="contact" id="contact" data-aos="fade-up">
@@ -74,50 +107,27 @@
 
 <footer>&copy; 2025 Shreyas | All Rights Reserved</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script>
 AOS.init({duration:1200,once:true});
+
+// Navbar scroll effect
 window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);});
 
+// Typed.js animation
 new Typed('.typed',{
-  strings:["Front-end Developer","Creative Designer","Tech Genius","Animation Wizard"],
+  strings:["Front-end Developer","Creative Designer","Tech Enthusiast"],
   typeSpeed:60,backSpeed:50,loop:true
 });
 
-// Dynamically generate 1000+ project cards
-const projectContainer = document.getElementById('project-container');
-for(let i=1;i<=1000;i++){
-  let card = document.createElement('div');
-  card.className = 'project-card animate__animated animate__zoomIn';
-  card.style.animationDelay = (i*0.01)+'s';
-  card.innerHTML = `<h3>Project #${i}</h3><p>This is dynamically generated project number ${i} with insane animations.</p>`;
-  projectContainer.appendChild(card);
-}
-
-// Infinite animation background using canvas
-const canvas=document.createElement('canvas');
-canvas.style.position='fixed';canvas.style.top='0';canvas.style.left='0';
-canvas.style.width='100%';canvas.style.height='100%';canvas.style.zIndex='-1';
-document.body.appendChild(canvas);
-const ctx=canvas.getContext('2d');let particles=[];
-function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-window.addEventListener('resize',resizeCanvas);resizeCanvas();
-for(let i=0;i<500;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*3+1,dx:(Math.random()-0.5)*2,dy:(Math.random()-0.5)*2})}
-function animateParticles(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for(let p of particles){
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle='rgba(255,215,0,0.7)';ctx.fill();
-    p.x+=p.dx;p.y+=p.dy;
-    if(p.x<0||p.x>canvas.width)p.dx*=-1;
-    if(p.y<0||p.y>canvas.height)p.dy*=-1;
-  }
-  requestAnimationFrame(animateParticles);
-}
-animateParticles();
+// Music play button
+const music = document.getElementById('bgMusic');
+const playBtn = document.getElementById('playMusic');
+playBtn.addEventListener('click', ()=>{
+  music.play();
+  playBtn.style.display = 'none';
+});
 </script>
 
 </body>
