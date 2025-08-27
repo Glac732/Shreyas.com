@@ -3,199 +3,563 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shreyas • Ultimate Portfolio</title>
-<meta name="description" content="Shreyas — Front-end developer & creative designer. Interactive web experiences with animations and performance.">
-<meta name="theme-color" content="#0a0a0a">
-<meta property="og:title" content="Shreyas • Ultimate Portfolio">
-<meta property="og:description" content="Interactive web experiences with animations and performance.">
-<meta property="og:type" content="website">
+<title>Shreyas • Portfolio</title>
+<meta name="description" content="Shreyas — Web Developer & Bot Creator">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-<script defer src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <style>
-:root{
-  --bg:#0a0a0a; --panel:#121212; --text:#f6f6f6; --muted:#bdbdbd;
-  --accent:#FFD700; --accent2:#00E5FF; --transition:.3s;
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-light: #f7f7f9;
+  --panel-dark: #121212;
+  --panel-light: #fff;
+  --text-dark: #f6f6f6;
+  --text-light: #121212;
+  --accent: #FFD700;
+  --accent2: #00E5FF;
+  --transition: .4s;
 }
-[data-theme="light"]{
-  --bg:#f7f7f9; --panel:#fff; --text:#121212; --muted:#5a5a5a;
-  --accent:#7A5CFF; --accent2:#FF8A00;
-}
-body{
-  margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);
-  transition: background var(--transition), color var(--transition);
-}
-a{text-decoration:none;color:inherit;}
-nav{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:15px 30px;z-index:1000;transition:background var(--transition),box-shadow var(--transition);}
-nav.scrolled{background:rgba(0,0,0,0.85);box-shadow:0 5px 25px rgba(0,0,0,.3);}
-.brand{display:flex;align-items:center;gap:.5rem;font-weight:800;}
-.brand-logo{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));}
-.links{display:flex;gap:20px;}
-.links a{position:relative;font-weight:600;}
-.links a::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s;}
-.links a:hover::after{width:100%;}
-.right-actions{display:flex;gap:10px;align-items:center;}
-.icon-btn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--panel);border:1px solid rgba(255,255,255,.1);}
-.btn{padding:.6rem 1rem;border-radius:999px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;display:flex;align-items:center;gap:.5rem;border:none;}
 
-/* Hero */
-.hero{height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(circle at 20% 20%, rgba(255,215,0,.15), transparent 50%),radial-gradient(circle at 80% 30%, rgba(0,229,255,.15), transparent 50%),url('https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;transition:transform .2s;}
-.hero-card{position:relative;z-index:2;text-align:center;padding:2rem 1.5rem;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.01));border-radius:20px;backdrop-filter:blur(10px);}
-.hero h1{font-size:clamp(2rem,5vw,3.5rem);background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;color:transparent;margin-bottom:1rem;}
-.typed{font-weight:600;opacity:.95;}
-.hero-cta{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap;}
-.play-btn{padding:.8rem 1.2rem;border-radius:10px;border:none;background:var(--panel);color:var(--text);cursor:pointer;}
+body[data-theme="dark"] { background: var(--bg-dark); color: var(--text-dark); }
+body[data-theme="light"] { background: var(--bg-light); color: var(--text-light); }
+body { font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; transition: var(--transition); }
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  z-index: 1000;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+nav.scrolled { background: rgba(0,0,0,.85); box-shadow: 0 5px 25px rgba(0,0,0,.3); }
+.brand { display: flex; align-items: center; gap: .5rem; font-weight: 800; }
+.brand-logo { width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+.links { display: flex; gap: 20px; }
+.links a { position: relative; font-weight: 600; }
+.links a::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width .3s; }
+.links a:hover::after { width: 100%; }
+.right-actions { display: flex; gap: 10px; align-items: center; }
+.icon-btn { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--panel-dark); border: 1px solid rgba(255,255,255,.1); cursor: pointer; }
+.btn { padding: .6rem 1rem; border-radius: 999px; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; display: flex; align-items: center; gap: .5rem; border: none; cursor: pointer; }
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(0,229,255,0.15)), 
+              url('https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
+  filter: contrast(1.1) brightness(0.9);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+.hero-cta {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
 
 /* Sections */
-section{padding:100px 20px;}
-.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:30px;}
-.kicker{color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:10px;}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:15px;}
-.stat{background:var(--panel);padding:15px;border-radius:12px;text-align:center;border:1px solid rgba(255,255,255,.1);}
-.stat h3{color:var(--accent);margin:0;font-size:1.5rem;}
-.stat p{color:var(--muted);margin-top:5px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
-.card{background:var(--panel);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;}
-.card:hover{transform:translateY(-8px);box-shadow:0 10px 25px rgba(0,0,0,.25);}
-.card img{width:100%;height:180px;object-fit:cover;display:block;}
+section {
+  padding: 100px 5%;
+  position: relative;
+}
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
-/* Contact */
-.contact .socials{display:flex;gap:15px;justify-content:center;}
-.contact a{width:50px;height:50px;border-radius:12px;display:grid;place-items:center;background:var(--panel);border:1px solid rgba(255,255,255,.1);font-size:1.2rem;transition:transform .2s,box-shadow .2s;}
-.contact a:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.2);}
+/* About Section */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+.about-content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+.skill {
+  background: var(--panel-dark);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
 
-/* Cursor */
-.cursor{position:fixed;top:0;left:0;width:20px;height:20px;border:2px solid var(--accent);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:transform .05s linear,opacity .2s;}
-.cursor-tail{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;opacity:.6;z-index:9999;pointer-events:none;transition:opacity .2s;}
+/* Projects Section */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+.project-card {
+  background: var(--panel-dark);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+.project-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.project-info {
+  padding: 20px;
+}
+.project-title {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+.project-desc {
+  opacity: 0.8;
+  margin-bottom: 15px;
+}
+.project-links {
+  display: flex;
+  gap: 10px;
+}
 
-/* Back to top */
-#toTop{position:fixed;bottom:20px;right:20px;width:45px;height:45px;border-radius:50%;background:var(--panel);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .3s;}
-#toTop.show{opacity:1;pointer-events:auto;}
+/* Contact Section */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--panel-dark);
+  color: var(--text-dark);
+  font-family: inherit;
+}
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+.social-link {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--panel-dark);
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+.social-link:hover {
+  transform: translateY(-5px);
+}
 
-/* Responsive */
-@media(max-width:900px){.about-grid{grid-template-columns:1fr;}}
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--panel-dark);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.back-to-top.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Particles */
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav { padding: 15px 20px; }
+  .links { display: none; }
+  .hero-content { padding: 2rem 1rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  section { padding: 80px 20px; }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.floating { animation: float 6s ease-in-out infinite; }
+
+/* Typed.js effect */
+.typed-cursor { opacity: 1; animation: blink 0.7s infinite; }
+@keyframes blink { 0% { opacity:1; } 50% { opacity:0; } 100% { opacity:1; } }
 </style>
 </head>
-<body data-theme="dark" class="hide-cursor">
+<body data-theme="dark">
 
+<!-- Navigation -->
 <nav id="navbar">
-  <div class="brand"><div class="brand-logo"></div><span>Shreyas</span></div>
-  <div class="links"><a href="#hero">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
+  <div class="brand">
+    <div class="brand-logo"></div>
+    <span>Shreyas</span>
+  </div>
+  <div class="links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
   <div class="right-actions">
-    <button id="themeToggle" class="icon-btn"><i class="fa-solid fa-moon"></i></button>
-    <a href="#projects" class="btn"><i class="fa-solid fa-bolt"></i> Explore</a>
+    <button id="themeToggle" class="icon-btn">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+    <a href="#contact" class="btn">
+      <i class="fa-solid fa-paper-plane"></i> Hire Me
+    </a>
   </div>
 </nav>
 
-<section class="hero" id="hero">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-card" data-tilt data-tilt-max="15" data-aos="fade-up">
-    <h1>Crafting delightful experiences</h1>
-    <span class="typed"></span>
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div id="particles-js"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>Hi, I'm Shreyas</h1>
+    <p class="typed-text">I build websites and bots that deliver results.</p>
     <div class="hero-cta">
-      <button id="playMusic" class="play-btn"><i class="fa-solid fa-play"></i> Play Music</button>
-      <a href="#about" class="btn"><i class="fa-solid fa-arrow-down"></i> Learn more</a>
+      <a href="#projects" class="btn">
+        <i class="fa-solid fa-code"></i> View My Work
+      </a>
+      <a href="#contact" class="btn btn-outline">
+        <i class="fa-solid fa-envelope"></i> Contact Me
+      </a>
     </div>
-    <audio id="bgMusic" loop>
-      <source src="golden_hour_instrumental.mp3" type="audio/mpeg">
-    </audio>
   </div>
 </section>
 
-<section class="about" id="about">
-  <div class="kicker">About Me</div>
-  <h2>I build sleek, animated web apps.</h2>
-  <div class="about-grid" data-aos="fade-up">
-    <div>
-      <p>I'm Shreyas — Front-end dev & designer focused on accessible, performant, and beautiful experiences. My toolkit: HTML, CSS, JS, frameworks, motion libraries.</p>
-      <div class="stats">
-        <div class="stat"><h3>50+</h3><p>UI components</p></div>
-        <div class="stat"><h3>0.9s</h3><p>Largest Contentful Paint</p></div>
-        <div class="stat"><h3>100</h3><p>Lighthouse a11y score</p></div>
+<!-- About Section -->
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="about-grid">
+    <div class="about-content">
+      <p>I'm a passionate web developer and bot creator with expertise in building modern, responsive websites and automated solutions that help businesses grow.</p>
+      <p>With 3+ years of experience, I've helped numerous clients establish their online presence and automate repetitive tasks through custom-built solutions.</p>
+      <div class="skills">
+        <span class="skill">HTML/CSS</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">React</span>
+        <span class="skill">Node.js</span>
+        <span class="skill">Python</span>
+        <span class="skill">Discord Bots</span>
+        <span class="skill">Automation</span>
+        <span class="skill">UI/UX</span>
       </div>
     </div>
-    <div>
-      <ul>
-        <li>✨ Motion-first design</li>
-        <li>⚡ Performance & code splitting</li>
-        <li>🔒 Secure by default</li>
-      </ul>
+    <div class="about-image">
+      <img src="https://via.placeholder.com/500x500" alt="Shreyas" style="border-radius: 15px; max-width: 100%;">
     </div>
   </div>
 </section>
 
-<section class="projects" id="projects">
-  <h2>Featured Projects</h2>
-  <div class="grid">
-    <div class="card" data-tilt data-tilt-max="12" data-aos="fade-up">
-      <img data-src="https://images.unsplash.com/photo-1508051123996-69f8caf4891e?auto=format&fit=crop&w=1200&q=60" alt="Project One" class="lazy">
-      <div class="content"><h3>Project One</h3><p>Interactive web project with modern animations.</p></div>
+<!-- Projects Section -->
+<section id="projects">
+  <h2 class="section-title">My Projects</h2>
+  <div class="projects-grid">
+    <!-- Project 1 -->
+    <div class="project-card">
+      <img src="https://via.placeholder.com/600x400" alt="Project 1" class="project-img">
+      <div class="project-info">
+        <h3 class="project-title">E-commerce Website</h3>
+        <p class="project-desc">A fully responsive online store with payment integration and admin dashboard.</p>
+        <div class="project-links">
+          <a href="#" class="btn btn-small">
+            <i class="fa-solid fa-eye"></i> Live Demo
+          </a>
+          <a href="#" class="btn btn-small btn-outline">
+            <i class="fa-brands fa-github"></i> Code
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="card" data-tilt data-tilt-max="12" data-aos="fade-up">
-      <img data-src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=60" alt="Project Two" class="lazy">
-      <div class="content"><h3>Project Two</h3><p>Invite my Discord bot 🚀</p></div>
+    
+    <!-- Project 2 -->
+    <div class="project-card">
+      <img src="https://via.placeholder.com/600x400" alt="Project 2" class="project-img">
+      <div class="project-info">
+        <h3 class="project-title">Discord Bot</h3>
+        <p class="project-desc">A multifunctional bot with moderation, music, and automation features.</p>
+        <div class="project-links">
+          <a href="#" class="btn btn-small">
+            <i class="fa-solid fa-eye"></i> Live Demo
+          </a>
+          <a href="#" class="btn btn-small btn-outline">
+            <i class="fa-brands fa-github"></i> Code
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Project 3 -->
+    <div class="project-card">
+      <img src="https://via.placeholder.com/600x400" alt="Project 3" class="project-img">
+      <div class="project-info">
+        <h3 class="project-title">Portfolio Template</h3>
+        <p class="project-desc">A modern portfolio template with animations and dark/light mode.</p>
+        <div class="project-links">
+          <a href="#" class="btn btn-small">
+            <i class="fa-solid fa-eye"></i> Live Demo
+          </a>
+          <a href="#" class="btn btn-small btn-outline">
+            <i class="fa-brands fa-github"></i> Code
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="contact" id="contact">
-  <h2>Let's Connect</h2>
-  <div class="contact socials" data-aos="zoom-in">
-    <a href="#"><i class="fab fa-discord"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
+<!-- Contact Section -->
+<section id="contact">
+  <h2 class="section-title">Get In Touch</h2>
+  <div class="contact-form">
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" required></textarea>
+      </div>
+      <button type="submit" class="btn">
+        <i class="fa-solid fa-paper-plane"></i> Send Message
+      </button>
+    </form>
+    
+    <div class="social-links">
+      <a href="#" class="social-link">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="#" class="social-link">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a href="#" class="social-link">
+        <i class="fa-brands fa-twitter"></i>
+      </a>
+      <a href="#" class="social-link">
+        <i class="fa-brands fa-discord"></i>
+      </a>
+    </div>
   </div>
 </section>
 
-<button id="toTop"><i class="fa-solid fa-arrow-up"></i></button>
+<!-- Footer -->
+<footer>
+  <p>&copy; 2023 Shreyas. All rights reserved.</p>
+</footer>
 
-<footer>&copy; <span id="year"></span> Shreyas • All Rights Reserved</footer>
+<!-- Back to Top Button -->
+<div class="back-to-top" id="backToTop">
+  <i class="fa-solid fa-arrow-up"></i>
+</div>
 
-<div class="cursor"></div>
-<div class="cursor-tail"></div>
-
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script>
-AOS.init({duration:800,once:true});
-const nav=document.getElementById('navbar');
-const toTop=document.getElementById('toTop');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>10);toTop.classList.toggle('show',window.scrollY>400);});
-toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
 
-/* Typed.js */
-new Typed('.typed',{strings:['Front-end Developer','Creative Designer','Tech Enthusiast','Motion Lover'],typeSpeed:50,backSpeed:40,loop:true});
+themeToggle.addEventListener('click', () => {
+  const isDark = body.getAttribute('data-theme') === 'dark';
+  body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  themeToggle.innerHTML = isDark ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+});
 
-/* Music */
-const music=document.getElementById('bgMusic'),playBtn=document.getElementById('playMusic');
-playBtn.addEventListener('click',()=>{if(music.paused){music.play();playBtn.innerHTML='<i class="fa-solid fa-pause"></i> Pause Music';}else{music.pause();playBtn.innerHTML='<i class="fa-solid fa-play"></i> Play Music';}});
+// Typed.js Effect
+const typed = new Typed('.typed-text', {
+  strings: [
+    'I build websites and bots.',
+    'I create digital solutions.',
+    'I automate workflows.',
+    'I design user experiences.'
+  ],
+  typeSpeed: 50,
+  backSpeed: 30,
+  loop: true
+});
 
-/* Theme toggle */
-const themeToggle=document.getElementById('themeToggle');
-if(localStorage.theme){document.body.setAttribute('data-theme',localStorage.theme);themeToggle.innerHTML=localStorage.theme==='light'?'<i class="fa-solid fa-moon"></i>':'<i class="fa-solid fa-sun"></i>';}
-themeToggle.addEventListener('click',()=>{const next=document.body.getAttribute('data-theme')==='dark'?'light':'dark';document.body.setAttribute('data-theme',next);localStorage.setItem('theme',next);themeToggle.innerHTML=next==='light'?'<i class="fa-solid fa-moon"></i>':'<i class="fa-solid fa-sun"></i>';});
+// Navbar Scroll Effect
+window.addEventListener('scroll', () => {
+  const navbar = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
 
-/* Custom Cursor */
-const cursor=document.querySelector('.cursor'),tail=document.querySelector('.cursor-tail');let lastX=0,lastY=0;
-window.addEventListener('mousemove',e=>{const x=e.clientX,y=e.clientY;cursor.style.transform=`translate(${x}px,${y}px)`;lastX+=(x-lastX)*0.2;lastY+=(y-lastY)*0.2;tail.style.transform=`translate(${lastX}px,${lastY}px)`;});
+// Back to Top Button
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    backToTop.classList.add('active');
+  } else {
+    backToTop.classList.remove('active');
+  }
+});
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
-/* GSAP scroll animations */
-gsap.utils.toArray('.card').forEach((el,i)=>{gsap.from(el,{y:50,opacity:0,duration:.6,delay:i*0.1,scrollTrigger:{trigger:el,start:'top 90%'}});});
+// GSAP Animations
+gsap.registerPlugin(ScrollTrigger);
 
-/* VanillaTilt */
-VanillaTilt.init(document.querySelectorAll('[data-tilt]'),{max:12,speed:400,glare:true,'max-glare':0.25});
+// Animate sections on scroll
+gsap.utils.toArray('section').forEach(section => {
+  gsap.from(section, {
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 80%',
+      toggleActions: 'play none none none'
+    },
+    opacity: 0,
+    y: 50,
+    duration: 1
+  });
+});
 
-/* Lazy loading images */
-document.querySelectorAll('.lazy').forEach(img=>{img.src=img.dataset.src;});
+// Particles.js Configuration
+particlesJS('particles-js', {
+  particles: {
+    number: { value: 80, density: { enable: true, value_area: 800 } },
+    color: { value: "#FFD700" },
+    shape: { type: "circle" },
+    opacity: { value: 0.5, random: true },
+    size: { value: 3, random: true },
+    line_linked: { enable: true, distance: 150, color: "#00E5FF", opacity: 0.4, width: 1 },
+    move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: { enable: true, mode: "repulse" },
+      onclick: { enable: true, mode: "push" }
+    }
+  }
+});
 
-/* Footer year */
-document.getElementById('year').textContent=new Date().getFullYear();
+// Mobile Menu Toggle (for smaller screens)
+const mobileMenuToggle = document.createElement('button');
+mobileMenuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+mobileMenuToggle.classList.add('icon-btn', 'mobile-menu-toggle');
+mobileMenuToggle.style.display = 'none';
+document.querySelector('.right-actions').prepend(mobileMenuToggle);
+
+const links = document.querySelector('.links');
+mobileMenuToggle.addEventListener('click', () => {
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+});
+
+function checkScreenSize() {
+  if (window.innerWidth <= 768) {
+    mobileMenuToggle.style.display = 'grid';
+    links.style.display = 'none';
+  } else {
+    mobileMenuToggle.style.display = 'none';
+    links.style.display = 'flex';
+  }
+}
+
+window.addEventListener('resize', checkScreenSize);
+checkScreenSize();
 </script>
 </body>
 </html>
