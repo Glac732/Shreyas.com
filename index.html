@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shreyas • Ultimate Portfolio</title>
-<meta name="description" content="Shreyas — Front-end developer & creative designer. Sleek, animated web experiences that impress and inspire.">
+<meta name="description" content="Shreyas — Front-end developer & creative designer. Interactive web experiences with animations and performance.">
 <meta name="theme-color" content="#0a0a0a">
 <meta property="og:title" content="Shreyas • Ultimate Portfolio">
-<meta property="og:description" content="Sleek, animated web experiences that impress and inspire.">
+<meta property="og:description" content="Interactive web experiences with animations and performance.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <script defer src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
@@ -22,73 +22,180 @@
 
 <style>
 :root{
-  --bg:#0a0a0a; --panel:#121212; --soft:#1a1a1a; --text:#f6f6f6; --muted:#bdbdbd;
-  --accent:#FFD700; --accent-2:#00E5FF; --glass:rgba(255,255,255,.06); --shadow:0 10px 30px rgba(0,0,0,.5);
-  --transition:.3s;
+  --bg:#0a0a0a; --panel:#121212; --text:#f6f6f6; --muted:#bdbdbd;
+  --accent:#FFD700; --accent2:#00E5FF; --transition:.3s;
 }
 [data-theme="light"]{
-  --bg:#f7f7f9; --panel:#fff; --soft:#f1f2f6; --text:#121212; --muted:#5a5a5a;
-  --accent:#7A5CFF; --accent-2:#FF8A00; --glass:rgba(0,0,0,.05); --shadow:0 10px 30px rgba(0,0,0,.15);
+  --bg:#f7f7f9; --panel:#fff; --text:#121212; --muted:#5a5a5a;
+  --accent:#7A5CFF; --accent2:#FF8A00;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;overflow-x:hidden;transition:background var(--transition), color var(--transition);}
-a{color:inherit;text-decoration:none;}
-ul{list-style:none;}
-button{font-family:inherit;}
-img{display:block;max-width:100%;height:auto;}
-
-/* Navbar */
-nav{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:14px 28px;z-index:999;transition:background var(--transition),box-shadow var(--transition);}
-nav.scrolled{background:rgba(10,10,10,.85);box-shadow:var(--shadow);}
-.brand{display:flex;align-items:center;gap:.6rem;font-weight:800;}
-.brand-logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 6px 18px rgba(255,215,0,.35);}
-.links{display:flex;gap:24px;}
-.links a{position:relative;font-weight:600;opacity:.9;}
-.links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .25s;}
+body{
+  margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);
+  transition: background var(--transition), color var(--transition);
+}
+a{text-decoration:none;color:inherit;}
+nav{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:15px 30px;z-index:1000;transition:background var(--transition),box-shadow var(--transition);}
+nav.scrolled{background:rgba(0,0,0,0.85);box-shadow:0 5px 25px rgba(0,0,0,.3);}
+.brand{display:flex;align-items:center;gap:.5rem;font-weight:800;}
+.brand-logo{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));}
+.links{display:flex;gap:20px;}
+.links a{position:relative;font-weight:600;}
+.links a::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s;}
 .links a:hover::after{width:100%;}
-.right-actions{display:flex;align-items:center;gap:10px;}
-.btn{display:flex;align-items:center;gap:.5rem;padding:.6rem 1rem;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#000;font-weight:700;border:none;}
-.icon-btn{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;background:var(--glass);border:1px solid rgba(255,255,255,.08);}
+.right-actions{display:flex;gap:10px;align-items:center;}
+.icon-btn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--panel);border:1px solid rgba(255,255,255,.1);}
+.btn{padding:.6rem 1rem;border-radius:999px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;display:flex;align-items:center;gap:.5rem;border:none;}
 
 /* Hero */
-.hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(1200px 800px at 20% 20%, rgba(255,215,0,.18), transparent 60%),radial-gradient(1000px 600px at 80% 30%, rgba(0,229,255,.18), transparent 60%),url('https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;filter:contrast(1.1) saturate(1.2) brightness(.9);transition:transform var(--transition);}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.75));}
-.hero-card{position:relative;z-index:2;text-align:center;padding:2rem 1.25rem;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(10px);transition:transform var(--transition);}
-.hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.1;margin:.25rem 0;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;}
-.typed{display:block;font-weight:600;opacity:.95;margin-bottom:1rem;}
-.hero-cta{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap;}
-.play-btn{padding:.9rem 1.25rem;font-size:1rem;border:none;border-radius:12px;background:var(--panel);color:var(--text);border:1px solid rgba(255,255,255,.1);}
+.hero{height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(circle at 20% 20%, rgba(255,215,0,.15), transparent 50%),radial-gradient(circle at 80% 30%, rgba(0,229,255,.15), transparent 50%),url('https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;transition:transform .2s;}
+.hero-card{position:relative;z-index:2;text-align:center;padding:2rem 1.5rem;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.01));border-radius:20px;backdrop-filter:blur(10px);}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;color:transparent;margin-bottom:1rem;}
+.typed{font-weight:600;opacity:.95;}
+.hero-cta{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap;}
+.play-btn{padding:.8rem 1.2rem;border-radius:10px;border:none;background:var(--panel);color:var(--text);cursor:pointer;}
 
-/* About */
-.about{background:var(--soft);padding:120px 22px;}
-.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;}
-.kicker{color:var(--accent);font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px;}
-.stat{background:var(--panel);padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,.08);text-align:center;}
-.stat h3{margin:0;font-size:1.6rem;color:var(--accent);}
-.stat p{margin:6px 0 0;color:var(--muted);}
-
-/* Projects */
-.projects{background:linear-gradient(180deg,transparent,rgba(255,255,255,.02));padding:120px 22px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;}
-.card{position:relative;background:var(--panel);border:1px solid rgba(255,255,255,.1);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform var(--transition);}
-.card:hover{transform:translateY(-6px);}
-.card .thumb{aspect-ratio:16/9;background:#000 center/cover no-repeat;}
-.card .content{padding:16px;}
-.card h3{margin:2px 0 6px;color:var(--accent);}
-.card p{margin:0;color:var(--muted);}
+/* Sections */
+section{padding:100px 20px;}
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:30px;}
+.kicker{color:var(--accent);text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:15px;}
+.stat{background:var(--panel);padding:15px;border-radius:12px;text-align:center;border:1px solid rgba(255,255,255,.1);}
+.stat h3{color:var(--accent);margin:0;font-size:1.5rem;}
+.stat p{color:var(--muted);margin-top:5px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.card{background:var(--panel);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;}
+.card:hover{transform:translateY(-8px);box-shadow:0 10px 25px rgba(0,0,0,.25);}
+.card img{width:100%;height:180px;object-fit:cover;display:block;}
 
 /* Contact */
-.contact{padding:120px 22px;}
-.contact .socials{display:flex;gap:14px;justify-content:center;}
-.contact a{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--panel);border:1px solid rgba(255,255,255,.1);font-size:1.25rem;color:var(--text);transition:transform var(--transition), box-shadow var(--transition);}
-.contact a:hover{transform:translateY(-4px);box-shadow:0 10px 20px rgba(0,0,0,.25);}
+.contact .socials{display:flex;gap:15px;justify-content:center;}
+.contact a{width:50px;height:50px;border-radius:12px;display:grid;place-items:center;background:var(--panel);border:1px solid rgba(255,255,255,.1);font-size:1.2rem;transition:transform .2s,box-shadow .2s;}
+.contact a:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.2);}
 
 /* Cursor */
-.cursor{position:fixed;top:0;left:0;width:24px;height:24px;border:2px solid var(--accent);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);box-shadow:0 0 15px var(--accent),0 0 30px var(--accent);transition:transform .08s ease,opacity .2s;}
-.cursor-tail{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;filter:blur(6px);opacity:.6;z-index:9999;pointer-events:none;transition:opacity .2s;}
-body.hide-cursor *{cursor:none;}
+.cursor{position:fixed;top:0;left:0;width:20px;height:20px;border:2px solid var(--accent);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:transform .05s linear,opacity .2s;}
+.cursor-tail{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;opacity:.6;z-index:9999;pointer-events:none;transition:opacity .2s;}
 
-/* Footer & Back to Top */
-footer{padding:28px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255
+/* Back to top */
+#toTop{position:fixed;bottom:20px;right:20px;width:45px;height:45px;border-radius:50%;background:var(--panel);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+#toTop.show{opacity:1;pointer-events:auto;}
+
+/* Responsive */
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body data-theme="dark" class="hide-cursor">
+
+<nav id="navbar">
+  <div class="brand"><div class="brand-logo"></div><span>Shreyas</span></div>
+  <div class="links"><a href="#hero">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
+  <div class="right-actions">
+    <button id="themeToggle" class="icon-btn"><i class="fa-solid fa-moon"></i></button>
+    <a href="#projects" class="btn"><i class="fa-solid fa-bolt"></i> Explore</a>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-card" data-tilt data-tilt-max="15" data-aos="fade-up">
+    <h1>Crafting delightful experiences</h1>
+    <span class="typed"></span>
+    <div class="hero-cta">
+      <button id="playMusic" class="play-btn"><i class="fa-solid fa-play"></i> Play Music</button>
+      <a href="#about" class="btn"><i class="fa-solid fa-arrow-down"></i> Learn more</a>
+    </div>
+    <audio id="bgMusic" loop>
+      <source src="golden_hour_instrumental.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="kicker">About Me</div>
+  <h2>I build sleek, animated web apps.</h2>
+  <div class="about-grid" data-aos="fade-up">
+    <div>
+      <p>I'm Shreyas — Front-end dev & designer focused on accessible, performant, and beautiful experiences. My toolkit: HTML, CSS, JS, frameworks, motion libraries.</p>
+      <div class="stats">
+        <div class="stat"><h3>50+</h3><p>UI components</p></div>
+        <div class="stat"><h3>0.9s</h3><p>Largest Contentful Paint</p></div>
+        <div class="stat"><h3>100</h3><p>Lighthouse a11y score</p></div>
+      </div>
+    </div>
+    <div>
+      <ul>
+        <li>✨ Motion-first design</li>
+        <li>⚡ Performance & code splitting</li>
+        <li>🔒 Secure by default</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <h2>Featured Projects</h2>
+  <div class="grid">
+    <div class="card" data-tilt data-tilt-max="12" data-aos="fade-up">
+      <img data-src="https://images.unsplash.com/photo-1508051123996-69f8caf4891e?auto=format&fit=crop&w=1200&q=60" alt="Project One" class="lazy">
+      <div class="content"><h3>Project One</h3><p>Interactive web project with modern animations.</p></div>
+    </div>
+    <div class="card" data-tilt data-tilt-max="12" data-aos="fade-up">
+      <img data-src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=60" alt="Project Two" class="lazy">
+      <div class="content"><h3>Project Two</h3><p>Invite my Discord bot 🚀</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Let's Connect</h2>
+  <div class="contact socials" data-aos="zoom-in">
+    <a href="#"><i class="fab fa-discord"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+</section>
+
+<button id="toTop"><i class="fa-solid fa-arrow-up"></i></button>
+
+<footer>&copy; <span id="year"></span> Shreyas • All Rights Reserved</footer>
+
+<div class="cursor"></div>
+<div class="cursor-tail"></div>
+
+<script>
+AOS.init({duration:800,once:true});
+const nav=document.getElementById('navbar');
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>10);toTop.classList.toggle('show',window.scrollY>400);});
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* Typed.js */
+new Typed('.typed',{strings:['Front-end Developer','Creative Designer','Tech Enthusiast','Motion Lover'],typeSpeed:50,backSpeed:40,loop:true});
+
+/* Music */
+const music=document.getElementById('bgMusic'),playBtn=document.getElementById('playMusic');
+playBtn.addEventListener('click',()=>{if(music.paused){music.play();playBtn.innerHTML='<i class="fa-solid fa-pause"></i> Pause Music';}else{music.pause();playBtn.innerHTML='<i class="fa-solid fa-play"></i> Play Music';}});
+
+/* Theme toggle */
+const themeToggle=document.getElementById('themeToggle');
+if(localStorage.theme){document.body.setAttribute('data-theme',localStorage.theme);themeToggle.innerHTML=localStorage.theme==='light'?'<i class="fa-solid fa-moon"></i>':'<i class="fa-solid fa-sun"></i>';}
+themeToggle.addEventListener('click',()=>{const next=document.body.getAttribute('data-theme')==='dark'?'light':'dark';document.body.setAttribute('data-theme',next);localStorage.setItem('theme',next);themeToggle.innerHTML=next==='light'?'<i class="fa-solid fa-moon"></i>':'<i class="fa-solid fa-sun"></i>';});
+
+/* Custom Cursor */
+const cursor=document.querySelector('.cursor'),tail=document.querySelector('.cursor-tail');let lastX=0,lastY=0;
+window.addEventListener('mousemove',e=>{const x=e.clientX,y=e.clientY;cursor.style.transform=`translate(${x}px,${y}px)`;lastX+=(x-lastX)*0.2;lastY+=(y-lastY)*0.2;tail.style.transform=`translate(${lastX}px,${lastY}px)`;});
+
+/* GSAP scroll animations */
+gsap.utils.toArray('.card').forEach((el,i)=>{gsap.from(el,{y:50,opacity:0,duration:.6,delay:i*0.1,scrollTrigger:{trigger:el,start:'top 90%'}});});
+
+/* VanillaTilt */
+VanillaTilt.init(document.querySelectorAll('[data-tilt]'),{max:12,speed:400,glare:true,'max-glare':0.25});
+
+/* Lazy loading images */
+document.querySelectorAll('.lazy').forEach(img=>{img.src=img.dataset.src;});
+
+/* Footer year */
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
