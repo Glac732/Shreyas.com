@@ -1,269 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shreyas • Portfolio</title>
-<meta name="description" content="Shreyas — Web Developer & Bot Creator">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<style>
-/* ---------- ROOT VARIABLES ---------- */
-:root {
-  --bg-dark: #0a0a0a;
-  --bg-light: #f7f7f9;
-  --panel-dark: #121212;
-  --panel-light: #fff;
-  --text-dark: #f6f6f6;
-  --text-light: #121212;
-  --accent: #FFD700;
-  --accent2: #00E5FF;
-  --transition: .4s;
-}
-
-body[data-theme="dark"] { background: var(--bg-dark); color: var(--text-dark); }
-body[data-theme="light"] { background: var(--bg-light); color: var(--text-light); }
-body { font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; transition: var(--transition); }
-
-/* ---------- NAVIGATION ---------- */
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 15px 5%; z-index: 1000;
-  transition: background var(--transition), box-shadow var(--transition);
-}
-nav.scrolled { background: rgba(0,0,0,.85); box-shadow: 0 5px 25px rgba(0,0,0,.3); }
-.brand { display: flex; align-items: center; gap: .5rem; font-weight: 800; }
-.brand-logo { width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); }
-.links { display: flex; gap: 20px; }
-.links a { position: relative; font-weight: 600; }
-.links a::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width .3s; }
-.links a:hover::after { width: 100%; }
-.right-actions { display: flex; gap: 10px; align-items: center; }
-.icon-btn { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--panel-dark); border: 1px solid rgba(255,255,255,.1); cursor: pointer; }
-.btn { padding: .6rem 1rem; border-radius: 999px; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; display: flex; align-items: center; gap: .5rem; border: none; cursor: pointer; transition: transform 0.3s; }
-.btn:hover { transform: translateY(-3px); }
-
-/* ---------- HERO SECTION ---------- */
-.hero { height: 100vh; display: grid; place-items: center; position: relative; overflow: hidden; }
-.hero-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(0,229,255,0.15)), 
-              url('https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
-  filter: contrast(1.1) brightness(0.9);
-}
-.hero-content { position: relative; z-index: 2; text-align: center; padding: 2rem; max-width: 800px; margin: 0 auto; }
-.hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-  margin-bottom: 1rem; line-height: 1.2;
-}
-.hero p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
-.hero-cta { display: flex; gap: 15px; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
-
-/* ---------- SECTIONS ---------- */
-section { padding: 100px 5%; position: relative; }
-.section-title {
-  font-size: 2.5rem; margin-bottom: 2rem;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-
-/* ---------- ABOUT ---------- */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
-.about-content p { margin-bottom: 1.5rem; line-height: 1.6; }
-.skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.5rem; }
-.skill { background: var(--panel-dark); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; }
-
-/* ---------- PROJECTS ---------- */
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
-.project-card {
-  background: var(--panel-dark); border-radius: 15px; overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s; border: 1px solid rgba(255,255,255,0.1);
-}
-.project-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
-.project-img { width: 100%; height: 200px; object-fit: cover; }
-.project-info { padding: 20px; }
-.project-title { font-size: 1.3rem; margin-bottom: 10px; }
-.project-desc { opacity: 0.8; margin-bottom: 15px; font-size: 0.95rem; }
-.project-links { display: flex; gap: 10px; }
-.btn-small { padding: 0.5rem 1rem; font-size: 0.9rem; }
-
-/* ---------- CONTACT ---------- */
-.contact-form { max-width: 600px; margin: 0 auto; }
-.form-group { margin-bottom: 20px; }
-.form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
-.form-group input, .form-group textarea {
-  width: 100%; padding: 12px 15px; border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.1); background: var(--panel-dark);
-  color: var(--text-dark); font-family: inherit; transition: border-color 0.3s;
-}
-.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
-.form-group textarea { min-height: 150px; resize: vertical; }
-.social-links { display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
-.social-link {
-  width: 50px; height: 50px; border-radius: 50%; background: var(--panel-dark);
-  display: grid; place-items: center; font-size: 1.2rem;
-  transition: transform 0.3s; position: relative; border: 1px solid rgba(255,255,255,0.1);
-}
-.social-link:hover { transform: translateY(-5px); }
-.tooltip {
-  position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%);
-  background: var(--panel-dark); padding: 5px 10px; border-radius: 5px;
-  opacity: 0; transition: opacity 0.3s; white-space: nowrap; font-size: 0.8rem;
-  pointer-events: none; border: 1px solid rgba(255,255,255,0.1);
-}
-.social-link:hover .tooltip { opacity: 1; }
-
-/* ---------- FOOTER ---------- */
-footer { text-align: center; padding: 30px 0; border-top: 1px solid rgba(255,255,255,0.1); }
-
-/* ---------- BACK TO TOP ---------- */
-.back-to-top {
-  position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
-  border-radius: 50%; background: var(--panel-dark); display: grid; place-items: center;
-  opacity: 0; visibility: hidden; transition: all 0.3s; cursor: pointer;
-  border: 1px solid rgba(255,255,255,0.1); z-index: 999;
-}
-.back-to-top.active { opacity: 1; visibility: visible; }
-.back-to-top:hover { background: var(--accent); color: #000; }
-
-/* ---------- PARTICLES ---------- */
-#particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
-
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 768px) {
-  nav { padding: 15px 20px; }
-  .links { 
-    display: none; position: fixed; top: 70px; left: 0; right: 0;
-    background: var(--panel-dark); flex-direction: column; padding: 20px; gap: 15px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-  .links.active { display: flex; }
-  .hero-content { padding: 2rem 1rem; }
-  .about-grid { grid-template-columns: 1fr; }
-  section { padding: 80px 20px; }
-  .mobile-menu-toggle { display: grid !important; }
-}
-.mobile-menu-toggle {
-  display: none; width: 40px; height: 40px; border-radius: 50%;
-  background: var(--panel-dark); place-items: center;
-  border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
-}
-
-/* ---------- ANIMATIONS ---------- */
-@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-20px);} }
-.floating { animation: float 6s ease-in-out infinite; }
-.typed-cursor { opacity: 1; animation: blink 0.7s infinite; }
-@keyframes blink { 0%{opacity:1;} 50%{opacity:0;} 100%{opacity:1;} }
-
-/* ---------- SCROLLBAR ---------- */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-dark); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
 </head>
-<body data-theme="dark">
+<body>
+  
+  <!-- Your site content -->
+  <header>
+    <h1>Welcome to My Portfolio</h1>
+  </header>
+  <main>
+    <p>Here is my work showcase...</p>
+  </main>
+  <footer>
+    <p>© 2025 My Portfolio</p>
+  </footer>
 
-<!-- NAVIGATION -->
-<nav id="navbar">
-  <div class="brand">
-    <div class="brand-logo"></div>
-    <span>Shreyas</span>
-  </div>
-  <div class="links">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <div class="right-actions">
-    <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fa-solid fa-bars"></i></button>
-    <button id="themeToggle" class="icon-btn"><i class="fa-solid fa-moon"></i></button>
-    <a href="#contact" class="btn"><i class="fa-solid fa-paper-plane"></i> Hire Me</a>
-  </div>
-</nav>
+  <!-- Form handling -->
+  <script>
+    const form = document.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          
+          if (response.ok) {
+            alert('Message sent successfully! I will get back to you soon.');
+            form.reset();
+          } else {
+            throw new Error('Form submission failed');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Something went wrong. Please try again later.');
+        } finally {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+    }
+  </script>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div id="particles-js"></div>
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <h1>Hi, I'm Shreyas</h1>
-    <p class="typed-text">I build websites and bots that deliver results.</p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn"><i class="fa-solid fa-code"></i> View My Work</a>
-      <a href="https://discord.com/oauth2/authorize?client_id=1257658298774196234&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.gg%2Fz9MDgmtuyT&integration_type=0&scope=bot" class="btn" target="_blank"><i class="fa-brands fa-discord"></i> Add My Bot</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <h2 class="section-title">About Me</h2>
-  <div class="about-grid">
-    <div class="about-content">
-      <p>I'm a passionate web developer and bot creator with expertise in building modern, responsive websites and automated solutions that help businesses grow.</p>
-      <p>With 3+ years of experience, I've helped numerous clients establish their online presence and automate repetitive tasks through custom-built solutions.</p>
-      <div class="skills">
-        <span class="skill">HTML/CSS</span><span class="skill">JavaScript</span><span class="skill">React</span><span class="skill">Node.js</span><span class="skill">Python</span><span class="skill">Discord Bots</span><span class="skill">Automation</span><span class="skill">UI/UX</span>
-      </div>
-    </div>
-    <div class="about-image"><img src="https://via.placeholder.com/500x500" alt="Shreyas" style="border-radius: 15px; max-width: 100%;"></div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <h2 class="section-title">My Projects</h2>
-  <div class="projects-grid">
-    <div class="project-card">
-      <img src="https://via.placeholder.com/600x400" alt="Discord Bot" class="project-img">
-      <div class="project-info">
-        <h3 class="project-title">Custom Discord Bot</h3>
-        <p class="project-desc">Advanced bot with moderation, automation, and entertainment features for Discord servers.</p>
-        <div class="project-links">
-          <a href="https://discord.com/oauth2/authorize?client_id=1257658298774196234&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.gg%2Fz9MDgmtuyT&integration_type=0&scope=bot" class="btn btn-small" target="_blank"><i class="fa-brands fa-discord"></i> Invite Bot</a>
-          <a href="#" class="btn btn-small" style="background: var(--panel-dark); color: var(--text-dark);"><i class="fa-brands fa-github"></i> Code</a>
-        </div>
-      </div>
-    </div>
-    <div class="project-card">
-      <img src="https://via.placeholder.com/600x400" alt="Website Project" class="project-img">
-      <div class="project-info">
-        <h3 class="project-title">Portfolio Website</h3>
-        <p class="project-desc">Modern responsive portfolio with animations and dark/light mode.</p>
-        <div class="project-links">
-          <a href="#" class="btn btn-small"><i class="fa-solid fa-eye"></i> Live Demo</a>
-          <a href="#" class="btn btn-small" style="background: var(--panel-dark); color: var(--text-dark);"><i class="fa-brands fa-github"></i> Code</a>
-        </div>
-      </div>
-    </div>
-    <div class="project-card">
-      <img src="https://via.placeholder.com/600x400" alt="Automation Project" class="project-img">
-      <div class="project-info">
-        <h3 class="project-title">Workflow Automation</h3>
-        <p class="project-desc">Python scripts to automate repetitive business tasks.</p>
-        <div class="project-links">
-          <a href="#" class="btn btn-small"><i class="fa-solid fa-eye"></i> Demo</a>
-          <a href="#" class="btn btn-small" style="background: var(--panel-dark); color: var(--text-dark);"><i class="fa-brands fa-github"></i> Code</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <h2 class="section-title">Get In Touch</h2>
-  <div class="contact-form">
-    <form action="https://formspree.io/f/mvojnzqz" method="POST">
-      <input type="hidden" name="_subject" value="New message from portfolio">
-      <input type="hidden" name="_replyto" value="shreyas.sawale09@gmail.com">
-      <div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" required></div>
-      <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
-      <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-      <button type="submit" class="btn"><i class="fa-solid fa-paper-plane"></i
+  <!-- ✅ Correct GetButton widget script -->
+  <script defer src="https://static.getbutton.io/widget/bundle.js?id=As04r"></script>
+</body>
+</html>
