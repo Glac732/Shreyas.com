@@ -5,54 +5,80 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shreyas Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-  /* Reset & base */
-  * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
-  body { font-family: 'Montserrat', sans-serif; background: linear-gradient(120deg, #1f1c2c, #928dab); color: #fff; overflow-x:hidden; }
-  a { text-decoration:none; color: inherit; }
+/* ---------------- Reset & Base ---------------- */
+* { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+body { font-family:'Montserrat', sans-serif; background: linear-gradient(120deg,#1f1c2c,#928dab); color:#fff; overflow-x:hidden; transition:0.5s; }
+a { text-decoration:none; color: inherit; }
+button { cursor:pointer; outline:none; }
 
-  /* Header */
-  header { width:100%; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background: linear-gradient(to right, #ff416c, #ff4b2b); animation: bgFade 10s infinite alternate; }
-  header h1 { font-size:3rem; animation: fadeInDown 1s ease forwards; }
-  header p { font-size:1.2rem; margin-top:10px; animation: fadeInUp 1s ease forwards; animation-delay:0.5s; opacity:0; }
-  @keyframes fadeInDown { 0% {opacity:0; transform: translateY(-50px);} 100% {opacity:1; transform:translateY(0);} }
-  @keyframes fadeInUp { 0% {opacity:0; transform: translateY(50px);} 100% {opacity:1; transform:translateY(0);} }
-  @keyframes bgFade { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+/* --------------- Light Theme ---------------- */
+body.light { background: linear-gradient(120deg,#f5f5f5,#cfcfcf); color:#111; }
 
-  /* Navbar */
-  nav { position:fixed; top:0; width:100%; display:flex; justify-content:space-between; align-items:center; padding:20px 50px; background:rgba(0,0,0,0.5); z-index:10; }
-  nav .logo { font-weight:bold; font-size:1.5rem; letter-spacing:2px; }
-  nav ul { display:flex; list-style:none; gap:25px; }
-  nav ul li a { transition:0.3s; }
-  nav ul li a:hover { color:#ff4b2b; }
+/* --------------- Navbar ---------------- */
+nav { position:fixed; top:0; width:100%; display:flex; justify-content:space-between; align-items:center; padding:20px 50px; background:rgba(0,0,0,0.5); z-index:100; transition:0.5s; }
+nav.light { background:rgba(255,255,255,0.8); }
+nav .logo { font-weight:bold; font-size:1.5rem; letter-spacing:2px; }
+nav ul { display:flex; list-style:none; gap:25px; }
+nav ul li a { transition:0.3s; }
+nav ul li a:hover { color:#ff4b2b; }
+nav .menu-toggle { display:none; font-size:1.5rem; cursor:pointer; }
 
-  /* Sections */
-  section { min-height:100vh; padding:100px 20px 50px 20px; display:flex; flex-direction:column; justify-content:center; align-items:center; }
-  section h2 { font-size:2.5rem; margin-bottom:30px; text-align:center; color:#ff4b2b; }
+/* --------------- Header ---------------- */
+header { width:100%; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; overflow:hidden; }
+header h1 { font-size:3rem; color:#ff4b2b; text-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c,0 0 30px #ff4b2b; animation: glow 2s infinite alternate; }
+header h2 { font-size:1.5rem; margin-top:20px; min-height:40px; color:#fff; text-shadow:0 0 5px #fff,0 0 10px #ff4b2b; }
+@keyframes glow { 0%{text-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c;} 100%{text-shadow:0 0 20px #ff4b2b,0 0 30px #ff416c,0 0 40px #fff;} }
 
-  /* About */
-  #about { background:#1f1c2c; }
-  #about p { max-width:700px; text-align:center; font-size:1.1rem; line-height:1.6; }
+/* --------------- Floating Space Elements ---------------- */
+.floating { position:absolute; width:10px; height:10px; border-radius:50%; background:#fff; opacity:0.7; animation: floatAnim linear infinite; }
+@keyframes floatAnim { 0%{transform:translateY(0);}50%{transform:translateY(-20px) translateX(10px);}100%{transform:translateY(0);} }
 
-  /* Projects */
-  #projects { background:#2c2a4a; display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-  .project-card { background:#3a3a5c; padding:20px; border-radius:15px; width:300px; transition: transform 0.3s, box-shadow 0.3s; }
-  .project-card:hover { transform:translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-  .project-card h3 { margin-bottom:10px; color:#ff4b2b; }
-  .project-card p { font-size:0.95rem; line-height:1.4; }
+/* --------------- Sections ---------------- */
+section { min-height:100vh; padding:100px 20px 50px 20px; display:flex; flex-direction:column; justify-content:center; align-items:center; transition:0.5s; }
+section h2 { font-size:2.5rem; margin-bottom:30px; text-align:center; color:#ff4b2b; text-shadow:0 0 10px #ff4b2b; }
 
-  /* Contact */
-  #contact { background:#1f1c2c; display:flex; flex-direction:column; align-items:center; }
-  #contact form { display:flex; flex-direction:column; gap:15px; width:100%; max-width:500px; }
-  #contact input, #contact textarea { padding:15px; border-radius:10px; border:none; outline:none; font-size:1rem; }
-  #contact button { padding:15px; border:none; border-radius:10px; background:#ff4b2b; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s; }
-  #contact button:hover { background:#ff416c; }
+/* --------------- About ---------------- */
+#about { background:#1f1c2c; }
+#about.light { background:#e0e0e0; color:#111; }
+#about p { max-width:700px; text-align:center; font-size:1.1rem; line-height:1.6; transition:0.5s; }
 
-  /* Footer */
-  footer { text-align:center; padding:20px; background:rgba(0,0,0,0.5); }
+/* --------------- Projects ---------------- */
+#projects { background:#2c2a4a; display:flex; flex-wrap:wrap; justify-content:center; gap:20px; transition:0.5s; }
+#projects.light { background:#dcdcdc; color:#111; }
+.project-card { background:#3a3a5c; padding:20px; border-radius:15px; width:300px; transition: transform 0.3s, box-shadow 0.3s, background 0.5s; cursor:pointer; }
+.project-card:hover { transform:translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.project-card h3 { margin-bottom:10px; color:#ff4b2b; text-shadow:0 0 5px #ff4b2b; }
+.project-card p { font-size:0.95rem; line-height:1.4; }
+.project-card.light { background:#f0f0f0; color:#111; }
 
-  /* Responsive */
-  @media(max-width:768px){ nav ul{flex-direction:column; background:rgba(0,0,0,0.8); position:absolute; top:70px; right:0; width:200px; padding:20px; display:none;} nav ul.show{display:flex;} nav .menu-toggle{display:block; cursor:pointer; font-size:1.5rem;} }
+/* Filter Buttons */
+.filter-btns { display:flex; gap:10px; margin-bottom:30px; flex-wrap:wrap; justify-content:center; }
+.filter-btns button { padding:10px 20px; border:none; border-radius:10px; background:#ff4b2b; color:#fff; cursor:pointer; transition:0.3s; }
+.filter-btns button:hover, .filter-btns button.active { background:#ff416c; }
+
+/* --------------- Contact ---------------- */
+#contact { background:#1f1c2c; display:flex; flex-direction:column; align-items:center; }
+#contact.light { background:#e0e0e0; color:#111; }
+#contact form { display:flex; flex-direction:column; gap:15px; width:100%; max-width:500px; }
+#contact input, #contact textarea { padding:15px; border-radius:10px; border:none; outline:none; font-size:1rem; transition:0.3s; }
+#contact button { padding:15px; border:none; border-radius:10px; background:#ff4b2b; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s; }
+#contact button:hover { background:#ff416c; }
+
+/* --------------- Footer ---------------- */
+footer { text-align:center; padding:20px; background:rgba(0,0,0,0.5); transition:0.5s; }
+footer.light { background:rgba(255,255,255,0.8); color:#111; }
+
+/* --------------- Responsive ---------------- */
+@media(max-width:768px){ 
+  nav ul{flex-direction:column; background:rgba(0,0,0,0.8); position:absolute; top:70px; right:0; width:200px; padding:20px; display:none;} 
+  nav ul.show{display:flex;} 
+  nav .menu-toggle{display:block;}
+}
+
+/* Smooth glow hover */
+.glow-hover:hover { text-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c,0 0 30px #fff; }
 </style>
 </head>
 <body>
@@ -65,13 +91,17 @@
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><button id="theme-toggle">Light/Dark</button></li>
   </ul>
 </nav>
 
+<!-- Floating Space Elements -->
+<div id="space-container"></div>
+
 <!-- Header -->
 <header>
-  <h1>Hi, I'm Shreyas</h1>
-  <p>JavaScript Developer | 50+ Projects | 500+ Servers | 5,000+ Users</p>
+  <h1 class="glow-hover">Hi, I'm Shreyas</h1>
+  <h2 id="typing-text"></h2>
 </header>
 
 <!-- About -->
@@ -83,17 +113,23 @@
 <!-- Projects -->
 <section id="projects">
   <h2>My Projects</h2>
-  <div class="project-card">
+  <div class="filter-btns">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="web">Web</button>
+    <button class="filter-btn" data-filter="bot">Bot</button>
+    <button class="filter-btn" data-filter="app">App</button>
+  </div>
+  <div class="project-card" data-type="web">
     <h3>Project 1</h3>
-    <p>Description of project 1. Innovative, interactive, and fully responsive.</p>
+    <p>Responsive web project with animations.</p>
   </div>
-  <div class="project-card">
+  <div class="project-card" data-type="bot">
     <h3>Project 2</h3>
-    <p>Description of project 2. Built with the latest technologies and sleek UI.</p>
+    <p>Interactive bot with commands.</p>
   </div>
-  <div class="project-card">
+  <div class="project-card" data-type="app">
     <h3>Project 3</h3>
-    <p>Description of project 3. Optimized for performance on all devices.</p>
+    <p>Mobile app optimized for performance.</p>
   </div>
 </section>
 
@@ -113,19 +149,76 @@
   &copy; 2025 Shreyas. All Rights Reserved.
 </footer>
 
-<script>
-  // Menu toggle
-  const toggle = document.querySelector('.menu-toggle');
-  const menu = document.querySelector('nav ul');
-  toggle.addEventListener('click', ()=>{ menu.classList.toggle('show'); });
+<!-- Audio -->
+<audio id="click-sound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
 
-  // Optional: Smooth scroll for nav links
-  document.querySelectorAll('nav a').forEach(link=>{
-    link.addEventListener('click', e=>{
-      e.preventDefault();
-      document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+<script>
+// ---------------- Typing Effect ----------------
+const texts = ["JavaScript Developer","50+ Projects","500+ Servers","5,000+ Users"];
+let count=0, index=0, currentText='', letter='';
+(function type(){
+  if(count===texts.length) count=0;
+  currentText=texts[count];
+  letter=currentText.slice(0,++index);
+  document.getElementById('typing-text').textContent=letter;
+  if(letter.length===currentText.length){ count++; index=0; setTimeout(type,1000);} else{ setTimeout(type,150);}
+})();
+
+// ---------------- Floating Space Elements ----------------
+const container = document.getElementById('space-container');
+for(let i=0;i<50;i++){
+  let dot=document.createElement('div');
+  dot.classList.add('floating');
+  dot.style.top=Math.random()*100+'%';
+  dot.style.left=Math.random()*100+'%';
+  dot.style.width=(5+Math.random()*10)+'px';
+  dot.style.height=dot.style.width;
+  dot.style.animationDuration=(3+Math.random()*5)+'s';
+  container.appendChild(dot);
+}
+
+// ---------------- Menu Toggle ----------------
+const toggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('nav ul');
+toggle.addEventListener('click',()=>{ menu.classList.toggle('show'); });
+
+// ---------------- Smooth Scroll ----------------
+document.querySelectorAll('nav a').forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// ---------------- Light/Dark Theme ----------------
+const themeBtn=document.getElementById('theme-toggle');
+themeBtn.addEventListener('click',()=>{
+  document.body.classList.toggle('light');
+  document.querySelectorAll('section').forEach(s=>s.classList.toggle('light'));
+  document.querySelectorAll('.project-card').forEach(p=>p.classList.toggle('light'));
+  document.querySelector('nav').classList.toggle('light');
+  document.querySelector('footer').classList.toggle('light');
+});
+
+// ---------------- Project Filtering ----------------
+const filterBtns=document.querySelectorAll('.filter-btn');
+const projects=document.querySelectorAll('.project-card');
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    let filter=btn.getAttribute('data-filter');
+    projects.forEach(p=>{
+      if(filter==='all'||p.getAttribute('data-type')===filter){p.style.display='block';}else{p.style.display='none';}
     });
   });
+});
+
+// ---------------- Sound on Click ----------------
+const clickSound=document.getElementById('click-sound');
+document.querySelectorAll('button, a').forEach(el=>{
+  el.addEventListener('click',()=>{ clickSound.currentTime=0; clickSound.play(); });
+});
 </script>
 
 </body>
