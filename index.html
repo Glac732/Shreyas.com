@@ -10,90 +10,79 @@
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-/* ---------------- Reset & Base ---------------- */
-* { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
-body { font-family:'Montserrat', sans-serif; background:#111; color:#fff; overflow-x:hidden; transition:0.5s; }
-a { text-decoration:none; color: inherit; }
-button { cursor:pointer; outline:none; }
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:#111;color:#fff;overflow-x:hidden;transition:0.5s;}
+body.light{background:#f5f5f5;color:#111;}
+a{text-decoration:none;color: inherit;}
+button{cursor:pointer;outline:none;}
 
-/* --------------- Light Theme ---------------- */
-body.light { background:#f5f5f5; color:#111; }
+/* Navbar */
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 50px;background:rgba(0,0,0,0.5);z-index:100;transition:0.5s;}
+nav.light{background:rgba(255,255,255,0.8);}
+nav .logo{font-weight:bold;font-size:1.5rem;letter-spacing:2px;}
+nav ul{display:flex;list-style:none;gap:25px;}
+nav ul li a{transition:0.3s;}
+nav ul li a:hover{color:#ff4b2b;}
+nav .menu-toggle{display:none;font-size:1.5rem;cursor:pointer;}
 
-/* --------------- Navbar ---------------- */
-nav { position:fixed; top:0; width:100%; display:flex; justify-content:space-between; align-items:center; padding:20px 50px; background:rgba(0,0,0,0.5); z-index:100; transition:0.5s; }
-nav.light { background:rgba(255,255,255,0.8); }
-nav .logo { font-weight:bold; font-size:1.5rem; letter-spacing:2px; }
-nav ul { display:flex; list-style:none; gap:25px; }
-nav ul li a { transition:0.3s; }
-nav ul li a:hover { color:#ff4b2b; }
-nav .menu-toggle { display:none; font-size:1.5rem; cursor:pointer; }
+/* Header + Parallax Layers */
+header{width:100%;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;}
+header h1{font-size:3rem;color:#ff4b2b;text-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c,0 0 30px #fff;animation: glow 2s infinite alternate;z-index:3;}
+header h2{font-size:1.5rem;margin-top:20px;min-height:40px;color:#fff;text-shadow:0 0 5px #fff,0 0 10px #ff4b2b;z-index:3;}
+@keyframes glow{0%{text-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c;}100%{text-shadow:0 0 20px #ff4b2b,0 0 30px #ff416c,0 0 40px #fff;}}
 
-/* --------------- Header ---------------- */
-header { width:100%; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; overflow:hidden; }
-header h1 { font-size:3rem; color:#ff4b2b; text-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c,0 0 30px #fff; animation: glow 2s infinite alternate; }
-header h2 { font-size:1.5rem; margin-top:20px; min-height:40px; color:#fff; text-shadow:0 0 5px #fff,0 0 10px #ff4b2b; }
-@keyframes glow { 0%{text-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c;} 100%{text-shadow:0 0 20px #ff4b2b,0 0 30px #ff416c,0 0 40px #fff;} }
+/* Particles */
+#particles-js{position:absolute;width:100%;height:100%;top:0;left:0;z-index:0;}
 
-/* --------------- Particles container ---------------- */
-#particles-js { position:absolute; width:100%; height:100%; top:0; left:0; z-index:0; }
+/* Floating Stars */
+.floating{position:absolute;border-radius:50%;background:#fff;opacity:0.7;animation: floatAnim linear infinite;}
+@keyframes floatAnim{0%{transform:translateY(0);}50%{transform:translateY(-20px) translateX(10px);}100%{transform:translateY(0);}}
 
-/* --------------- Floating Space Elements ---------------- */
-.floating { position:absolute; width:10px; height:10px; border-radius:50%; background:#fff; opacity:0.7; animation: floatAnim linear infinite; }
-@keyframes floatAnim { 0%{transform:translateY(0);}50%{transform:translateY(-20px) translateX(10px);}100%{transform:translateY(0);} }
+/* Sections */
+section{min-height:100vh;padding:100px 20px 50px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:0.5s;position:relative;z-index:1;}
+section h2{font-size:2.5rem;margin-bottom:30px;text-align:center;color:#ff4b2b;text-shadow:0 0 10px #ff4b2b;}
 
-/* --------------- Sections ---------------- */
-section { min-height:100vh; padding:100px 20px 50px 20px; display:flex; flex-direction:column; justify-content:center; align-items:center; transition:0.5s; position:relative; z-index:1; }
-section h2 { font-size:2.5rem; margin-bottom:30px; text-align:center; color:#ff4b2b; text-shadow:0 0 10px #ff4b2b; }
+/* About */
+#about{background:#1f1c2c;}
+#about.light{background:#e0e0e0;color:#111;}
+#about p{max-width:700px;text-align:center;font-size:1.1rem;line-height:1.6;transition:0.5s;}
 
-/* --------------- About ---------------- */
-#about { background:#1f1c2c; }
-#about.light { background:#e0e0e0; color:#111; }
-#about p { max-width:700px; text-align:center; font-size:1.1rem; line-height:1.6; transition:0.5s; }
+/* Projects */
+#projects{background:#2c2a4a;display:flex;flex-wrap:wrap;justify-content:center;gap:20px;transition:0.5s;}
+#projects.light{background:#dcdcdc;color:#111;}
+.project-card{background:#3a3a5c;padding:20px;border-radius:15px;width:300px;transition:transform 0.3s,box-shadow 0.3s,background 0.5s;cursor:pointer;text-align:center;transform-style:preserve-3d; perspective:1000px;}
+.project-card:hover{transform:rotateY(15deg) rotateX(5deg) scale(1.05);box-shadow:0 15px 40px rgba(255,75,43,0.7);}
+.project-card h3{margin-bottom:10px;color:#ff4b2b;text-shadow:0 0 5px #ff4b2b;}
+.project-card p{font-size:0.95rem;line-height:1.4;}
+.project-card.light{background:#f0f0f0;color:#111;}
 
-/* --------------- Projects ---------------- */
-#projects { background:#2c2a4a; display:flex; flex-wrap:wrap; justify-content:center; gap:20px; transition:0.5s; }
-#projects.light { background:#dcdcdc; color:#111; }
-.project-card { background:#3a3a5c; padding:20px; border-radius:15px; width:300px; transition: transform 0.3s, box-shadow 0.3s, background 0.5s; cursor:pointer; text-align:center; }
-.project-card:hover { transform:translateY(-10px) scale(1.05); box-shadow: 0 10px 30px rgba(255,75,43,0.7); }
-.project-card h3 { margin-bottom:10px; color:#ff4b2b; text-shadow:0 0 5px #ff4b2b; }
-.project-card p { font-size:0.95rem; line-height:1.4; }
-.project-card.light { background:#f0f0f0; color:#111; }
+/* Neon Buttons */
+.filter-btns{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap;justify-content:center;}
+.filter-btns button{padding:10px 20px;border:none;border-radius:10px;background:#ff4b2b;color:#fff;cursor:pointer;transition:0.3s, box-shadow 0.3s;text-shadow:0 0 5px #ff4b2b;}
+.filter-btns button:hover, .filter-btns button.active{background:#ff416c;box-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c;}
 
-/* Neon button hover */
-.filter-btns button { padding:10px 20px; border:none; border-radius:10px; background:#ff4b2b; color:#fff; cursor:pointer; transition:0.3s, box-shadow 0.3s; text-shadow:0 0 5px #ff4b2b; }
-.filter-btns button:hover, .filter-btns button.active { background:#ff416c; box-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c; }
+/* Contact */
+#contact{background:#1f1c2c;display:flex;flex-direction:column;align-items:center;}
+#contact.light{background:#e0e0e0;color:#111;}
+#contact form{display:flex;flex-direction:column;gap:15px;width:100%;max-width:500px;}
+#contact input,#contact textarea{padding:15px;border-radius:10px;border:none;outline:none;font-size:1rem;transition:0.3s, box-shadow 0.3s;}
+#contact input:hover,#contact textarea:hover{box-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c;}
+#contact button{padding:15px;border:none;border-radius:10px;background:#ff4b2b;color:#fff;font-weight:bold;cursor:pointer;transition:0.3s, box-shadow 0.3s;text-shadow:0 0 5px #ff4b2b;}
+#contact button:hover{background:#ff416c;box-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c;}
 
-/* --------------- Contact ---------------- */
-#contact { background:#1f1c2c; display:flex; flex-direction:column; align-items:center; }
-#contact.light { background:#e0e0e0; color:#111; }
-#contact form { display:flex; flex-direction:column; gap:15px; width:100%; max-width:500px; }
-#contact input, #contact textarea { padding:15px; border-radius:10px; border:none; outline:none; font-size:1rem; transition:0.3s, box-shadow 0.3s; }
-#contact input:hover, #contact textarea:hover { box-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c; }
-#contact button { padding:15px; border:none; border-radius:10px; background:#ff4b2b; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s, box-shadow 0.3s; text-shadow:0 0 5px #ff4b2b; }
-#contact button:hover { background:#ff416c; box-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c; }
+/* Footer */
+footer{text-align:center;padding:20px;background:rgba(0,0,0,0.5);transition:0.5s;}
+footer.light{background:rgba(255,255,255,0.8);color:#111;}
 
-/* --------------- Footer ---------------- */
-footer { text-align:center; padding:20px; background:rgba(0,0,0,0.5); transition:0.5s; }
-footer.light { background:rgba(255,255,255,0.8); color:#111; }
-
-/* --------------- Responsive ---------------- */
-@media(max-width:768px){ 
-  nav ul{flex-direction:column; background:rgba(0,0,0,0.8); position:absolute; top:70px; right:0; width:200px; padding:20px; display:none;} 
-  nav ul.show{display:flex;} 
-  nav .menu-toggle{display:block;}
-}
-
-/* Smooth glow hover */
-.glow-hover:hover { text-shadow:0 0 10px #ff4b2b,0 0 20px #ff416c,0 0 30px #fff; }
+/* Responsive */
+@media(max-width:768px){nav ul{flex-direction:column;background:rgba(0,0,0,0.8);position:absolute;top:70px;right:0;width:200px;padding:20px;display:none;}nav ul.show{display:flex;}nav .menu-toggle{display:block;}}
 
 </style>
 </head>
 <body>
 
-<!-- Particles Background -->
 <div id="particles-js"></div>
 
-<!-- Navbar -->
 <nav>
   <div class="logo">Shreyas</div>
   <div class="menu-toggle">&#9776;</div>
@@ -105,19 +94,16 @@ footer.light { background:rgba(255,255,255,0.8); color:#111; }
   </ul>
 </nav>
 
-<!-- Header -->
 <header>
   <h1 class="glow-hover">Hi, I'm Shreyas</h1>
   <h2 id="typing-text"></h2>
 </header>
 
-<!-- About -->
 <section id="about">
   <h2>About Me</h2>
   <p>I am a passionate developer with expertise in JavaScript and full-stack development. I have worked on 50+ projects, contributed to 500+ servers, and served over 5,000 users. My focus is on creating responsive, interactive, and visually stunning web experiences.</p>
 </section>
 
-<!-- Projects -->
 <section id="projects">
   <h2>My Projects</h2>
   <div class="filter-btns">
@@ -128,109 +114,4 @@ footer.light { background:rgba(255,255,255,0.8); color:#111; }
   </div>
   <div class="project-card" data-type="web">
     <h3>Project 1</h3>
-    <p>Responsive web project with animations.</p>
-  </div>
-  <div class="project-card" data-type="bot">
-    <h3>Project 2</h3>
-    <p>Interactive bot with commands.</p>
-  </div>
-  <div class="project-card" data-type="app">
-    <h3>Project 3</h3>
-    <p>Mobile app optimized for performance.</p>
-  </div>
-</section>
-
-<!-- Contact -->
-<section id="contact">
-  <h2>Contact Me</h2>
-  <form>
-    <input type="text" placeholder="Name" required>
-    <input type="email" placeholder="Email" required>
-    <textarea placeholder="Message" rows="5" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
-
-<!-- Footer -->
-<footer>
-  &copy; 2025 Shreyas. All Rights Reserved.
-</footer>
-
-<!-- Audio -->
-<audio id="click-sound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
-<audio id="hover-sound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3"></audio>
-
-<script>
-// ---------------- Particles.js ----------------
-particlesJS('particles-js', {
-  particles: {
-    number:{value:80, density:{enable:true,value_area:800}},
-    color:{value:'#ff4b2b'},
-    shape:{type:'circle'},
-    opacity:{value:0.5, random:true},
-    size:{value:3, random:true},
-    line_linked:{enable:true, distance:150, color:'#ff4b2b', opacity:0.4, width:1},
-    move:{enable:true, speed:2, direction:'none', random:false, straight:false, out_mode:'out'}
-  },
-  interactivity:{detect_on:'canvas', events:{onhover:{enable:true, mode:'repulse'}, onclick:{enable:true, mode:'push'}}, modes:{repulse:{distance:100}, push:{particles_nb:4}}}, retina_detect:true
-});
-
-// ---------------- Typing Effect ----------------
-const texts = ["JavaScript Developer","50+ Projects","500+ Servers","5,000+ Users"];
-let count=0, index=0, currentText='', letter='';
-(function type(){
-  if(count===texts.length) count=0;
-  currentText=texts[count];
-  letter=currentText.slice(0,++index);
-  document.getElementById('typing-text').textContent=letter;
-  if(letter.length===currentText.length){ count++; index=0; setTimeout(type,1000);} else{ setTimeout(type,150);}
-})();
-
-// ---------------- Menu Toggle ----------------
-const toggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('nav ul');
-toggle.addEventListener('click',()=>{ menu.classList.toggle('show'); });
-
-// ---------------- Smooth Scroll ----------------
-document.querySelectorAll('nav a').forEach(link=>{
-  link.addEventListener('click',e=>{
-    e.preventDefault();
-    document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});
-  });
-});
-
-// ---------------- Light/Dark Theme ----------------
-const themeBtn=document.getElementById('theme-toggle');
-themeBtn.addEventListener('click',()=>{
-  document.body.classList.toggle('light');
-  document.querySelectorAll('section').forEach(s=>s.classList.toggle('light'));
-  document.querySelectorAll('.project-card').forEach(p=>p.classList.toggle('light'));
-  document.querySelector('nav').classList.toggle('light');
-  document.querySelector('footer').classList.toggle('light');
-});
-
-// ---------------- Project Filtering ----------------
-const filterBtns=document.querySelectorAll('.filter-btn');
-const projects=document.querySelectorAll('.project-card');
-filterBtns.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    filterBtns.forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    let filter=btn.getAttribute('data-filter');
-    projects.forEach(p=>{
-      if(filter==='all'||p.getAttribute('data-type')===filter){p.style.display='block';}else{p.style.display='none';}
-    });
-  });
-});
-
-// ---------------- Sounds ----------------
-const clickSound=document.getElementById('click-sound');
-const hoverSound=document.getElementById('hover-sound');
-document.querySelectorAll('button, a').forEach(el=>{
-  el.addEventListener('click',()=>{ clickSound.currentTime=0; clickSound.play(); });
-  el.addEventListener('mouseenter',()=>{ hoverSound.currentTime=0; hoverSound.play(); });
-});
-</script>
-
-</body>
-</html>
+    <p>Responsive web project
