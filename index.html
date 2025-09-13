@@ -101,4 +101,127 @@ footer.light{background:rgba(255,255,255,0.8);color:#111;}
   <!-- Example floating logos -->
   <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Twitter-logo.svg" class="floating-logo" style="top:10%;left:15%;width:50px;">
   <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Apple-logo.png" class="floating-logo" style="top:40%;left:80%;width:50px;">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Discord_logo.svg" class="floating-logo" style="top:70%;left:50%;width:
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Discord_logo.svg" class="floating-logo" style="top:70%;left:50%;width:50px;">
+</header>
+
+<!-- About -->
+<section id="about">
+<h2>About Me</h2>
+<p>I am a passionate developer with expertise in JavaScript and full-stack development. I have worked on 50+ projects, contributed to 500+ servers, and served over 5,000 users. I focus on creating responsive, interactive, visually stunning web experiences.</p>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+<h2>My Projects</h2>
+<div class="filter-btns">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="web">Web</button>
+  <button class="filter-btn" data-filter="bot">Bot</button>
+  <button class="filter-btn" data-filter="app">App</button>
+</div>
+<div class="project-card" data-type="web">
+<h3>Project 1</h3>
+<p>Responsive web project with animations and interactive features.</p>
+</div>
+<div class="project-card" data-type="bot">
+<h3>Project 2</h3>
+<p>Discord bot for server automation and fun commands.</p>
+</div>
+<div class="project-card" data-type="app">
+<h3>Project 3</h3>
+<p>Mobile application optimized for performance and UI.</p>
+</div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+<h2>Contact Me</h2>
+<form>
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="Email" required>
+<textarea placeholder="Message" rows="5" required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</section>
+
+<!-- Footer -->
+<footer>
+&copy; 2025 Shreyas. All Rights Reserved.
+</footer>
+
+<!-- Sounds -->
+<audio id="click-sound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+<audio id="hover-sound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3"></audio>
+
+<script>
+// ---------------- Particles.js ----------------
+particlesJS('particles-js',{
+  particles:{
+    number:{value:80,density:{enable:true,value_area:800}},
+    color:{value:'#ff4b2b'},
+    shape:{type:'circle'},
+    opacity:{value:0.5,random:true},
+    size:{value:3,random:true},
+    line_linked:{enable:true,distance:150,color:'#ff4b2b',opacity:0.4,width:1},
+    move:{enable:true,speed:2,direction:'none',random:false,straight:false,out_mode:'out'}
+  },
+  interactivity:{detect_on:'canvas',events:{onhover:{enable:true,mode:'repulse'},onclick:{enable:true,mode:'push'}},modes:{repulse:{distance:100},push:{particles_nb:4}}},retina_detect:true
+});
+
+// ---------------- Typing Effect ----------------
+const texts=["JavaScript Developer","50+ Projects","500+ Servers","5,000+ Users"];
+let count=0,index=0,currentText='',letter='';
+(function type(){
+if(count===texts.length) count=0;
+currentText=texts[count];
+letter=currentText.slice(0,++index);
+document.getElementById('typing-text').textContent=letter;
+if(letter.length===currentText.length){count++;index=0;setTimeout(type,1000);} else{setTimeout(type,150);}
+})();
+
+// ---------------- Menu Toggle ----------------
+document.querySelector('.menu-toggle').addEventListener('click',()=>{document.querySelector('nav ul').classList.toggle('show');});
+
+// ---------------- Smooth Scroll ----------------
+document.querySelectorAll('nav a').forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});});});
+
+// ---------------- Light/Dark Theme ----------------
+document.getElementById('theme-toggle').addEventListener('click',()=>{
+document.body.classList.toggle('light');
+document.querySelectorAll('section').forEach(s=>s.classList.toggle('light'));
+document.querySelectorAll('.project-card').forEach(p=>p.classList.toggle('light'));
+document.querySelector('nav').classList.toggle('light');
+document.querySelector('footer').classList.toggle('light');
+});
+
+// ---------------- Project Filtering ----------------
+const filterBtns=document.querySelectorAll('.filter-btn');
+const projects=document.querySelectorAll('.project-card');
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    let filter=btn.getAttribute('data-filter');
+    projects.forEach(p=>{if(filter==='all'||p.getAttribute('data-type')===filter){p.style.display='block';}else{p.style.display='none';}});
+  });
+});
+
+// ---------------- Sounds ----------------
+const clickSound=document.getElementById('click-sound');
+const hoverSound=document.getElementById('hover-sound');
+document.querySelectorAll('button, a').forEach(el=>{
+  el.addEventListener('click',()=>{clickSound.currentTime=0;clickSound.play();});
+  el.addEventListener('mouseenter',()=>{hoverSound.currentTime=0;hoverSound.play();});
+});
+
+// ---------------- Greeting ----------------
+const hour=new Date().getHours();
+let greetText="Hi, I'm Shreyas";
+if(hour<12) greetText="Good Morning! I'm Shreyas";
+else if(hour<18) greetText="Good Afternoon! I'm Shreyas";
+else greetText="Good Evening! I'm Shreyas";
+document.getElementById('greeting').textContent=greetText;
+</script>
+
+</body>
+</html>
