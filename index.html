@@ -3,316 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shreyas • Portfolio</title>
-<meta name="description" content="Shreyas — Web Developer & Bot Creator">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<title>Shreyas Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg-dark: #0a0a0a;
-  --bg-light: #f7f7f9;
-  --panel-dark: #121212;
-  --panel-light: #fff;
-  --text-dark: #f6f6f6;
-  --text-light: #121212;
-  --accent: #FFD700;
-  --accent2: #00E5FF;
-  --transition: .4s;
-}
+  /* Reset & base */
+  * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: linear-gradient(120deg, #1f1c2c, #928dab); color: #fff; overflow-x:hidden; }
+  a { text-decoration:none; color: inherit; }
 
-/* 💡 Enhanced: Loading Skeleton */
-.loading-skeleton {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: var(--bg-dark);
-  z-index: 9999;
-}
+  /* Header */
+  header { width:100%; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background: linear-gradient(to right, #ff416c, #ff4b2b); animation: bgFade 10s infinite alternate; }
+  header h1 { font-size:3rem; animation: fadeInDown 1s ease forwards; }
+  header p { font-size:1.2rem; margin-top:10px; animation: fadeInUp 1s ease forwards; animation-delay:0.5s; opacity:0; }
+  @keyframes fadeInDown { 0% {opacity:0; transform: translateY(-50px);} 100% {opacity:1; transform:translateY(0);} }
+  @keyframes fadeInUp { 0% {opacity:0; transform: translateY(50px);} 100% {opacity:1; transform:translateY(0);} }
+  @keyframes bgFade { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 
-body[data-theme="dark"] { background: var(--bg-dark); color: var(--text-dark); }
-body[data-theme="light"] { background: var(--bg-light); color: var(--text-light); }
-body { font-family: 'Poppins', sans-serif; margin: 0; overflow-x: hidden; transition: var(--transition); }
+  /* Navbar */
+  nav { position:fixed; top:0; width:100%; display:flex; justify-content:space-between; align-items:center; padding:20px 50px; background:rgba(0,0,0,0.5); z-index:10; }
+  nav .logo { font-weight:bold; font-size:1.5rem; letter-spacing:2px; }
+  nav ul { display:flex; list-style:none; gap:25px; }
+  nav ul li a { transition:0.3s; }
+  nav ul li a:hover { color:#ff4b2b; }
 
-/* Navigation */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 5%;
-  z-index: 1000;
-  transition: background var(--transition), box-shadow var(--transition);
-}
-nav.scrolled { background: rgba(0,0,0,.85); box-shadow: 0 5px 25px rgba(0,0,0,.3); }
-.brand { display: flex; align-items: center; gap: .5rem; font-weight: 800; }
-.brand-logo { width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); }
-.links { display: flex; gap: 20px; }
-.links a { position: relative; font-weight: 600; }
-.links a::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width .3s; }
-.links a:hover::after { width: 100%; }
-.right-actions { display: flex; gap: 10px; align-items: center; }
-.icon-btn { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--panel-dark); border: 1px solid rgba(255,255,255,.1); cursor: pointer; }
-.btn { padding: .6rem 1rem; border-radius: 999px; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #000; display: flex; align-items: center; gap: .5rem; border: none; cursor: pointer; transition: transform 0.3s; }
-.btn:hover { transform: translateY(-3px); }
+  /* Sections */
+  section { min-height:100vh; padding:100px 20px 50px 20px; display:flex; flex-direction:column; justify-content:center; align-items:center; }
+  section h2 { font-size:2.5rem; margin-bottom:30px; text-align:center; color:#ff4b2b; }
 
-/* Hero Section */
-.hero {
-  height: 100vh;
-  display: grid;
-  place-items: center;
-  position: relative;
-  overflow: hidden;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(0,229,255,0.15)), 
-              url('hero.webp') center/cover no-repeat;
-  filter: contrast(1.1) brightness(0.9);
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
-}
-.hero-cta {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-}
+  /* About */
+  #about { background:#1f1c2c; }
+  #about p { max-width:700px; text-align:center; font-size:1.1rem; line-height:1.6; }
 
-/* 💡 Enhanced: Live Stats */
-.live-stats {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 2rem;
-  z-index: 3;
-}
-.stat {
-  background: rgba(0,0,0,0.7);
-  padding: 10px 20px;
-  border-radius: 8px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
+  /* Projects */
+  #projects { background:#2c2a4a; display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+  .project-card { background:#3a3a5c; padding:20px; border-radius:15px; width:300px; transition: transform 0.3s, box-shadow 0.3s; }
+  .project-card:hover { transform:translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+  .project-card h3 { margin-bottom:10px; color:#ff4b2b; }
+  .project-card p { font-size:0.95rem; line-height:1.4; }
 
-/* Sections */
-section {
-  padding: 100px 5%;
-  position: relative;
-}
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+  /* Contact */
+  #contact { background:#1f1c2c; display:flex; flex-direction:column; align-items:center; }
+  #contact form { display:flex; flex-direction:column; gap:15px; width:100%; max-width:500px; }
+  #contact input, #contact textarea { padding:15px; border-radius:10px; border:none; outline:none; font-size:1rem; }
+  #contact button { padding:15px; border:none; border-radius:10px; background:#ff4b2b; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s; }
+  #contact button:hover { background:#ff416c; }
 
-/* About Section + Skill Bars */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  align-items: center;
-}
-.skill-bars {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-.skill-bar {
-  display: grid;
-  gap: 0.5rem;
-}
-.bar {
-  height: 8px;
-  background: var(--panel-dark);
-  border-radius: 4px;
-}
-.progress {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  border-radius: 4px;
-  transition: width 1s ease;
-}
+  /* Footer */
+  footer { text-align:center; padding:20px; background:rgba(0,0,0,0.5); }
 
-/* Projects Section */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-}
-.project-card {
-  background: var(--panel-dark);
-  border-radius: 15px;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-}
-.project-img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-.project-info {
-  padding: 20px;
-}
-
-/* 💡 Enhanced: Project Metrics */
-.project-metrics {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-}
-
-/* Contact Section */
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-}
-.email-copy {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 20px auto;
-  background: var(--panel-dark);
-  padding: 12px 20px;
-  border-radius: 8px;
-  width: fit-content;
-}
-
-/* 💡 Compact Media Queries */
-@media (max-width: 768px) {
-  nav { padding: 15px 20px; }
-  .links { display: none; }
-  .hero-content { padding: 2rem 1rem; }
-  .about-grid { grid-template-columns: 1fr; }
-  section { padding: 80px 20px; }
-  .mobile-menu-toggle { display: grid !important; }
-}
-
-/* Remaining original styles... (scrollbar, animations, etc) */
+  /* Responsive */
+  @media(max-width:768px){ nav ul{flex-direction:column; background:rgba(0,0,0,0.8); position:absolute; top:70px; right:0; width:200px; padding:20px; display:none;} nav ul.show{display:flex;} nav .menu-toggle{display:block; cursor:pointer; font-size:1.5rem;} }
 </style>
 </head>
-<body data-theme="dark">
+<body>
 
-<!-- Loading Skeleton -->
-<div class="loading-skeleton">
-  <div class="skeleton-header"></div>
-  <div class="skeleton-hero"></div>
-</div>
+<!-- Navbar -->
+<nav>
+  <div class="logo">Shreyas</div>
+  <div class="menu-toggle">&#9776;</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-<!-- Original Navigation -->
-<nav id="navbar">...</nav>
+<!-- Header -->
+<header>
+  <h1>Hi, I'm Shreyas</h1>
+  <p>JavaScript Developer | 50+ Projects | 500+ Servers | 5,000+ Users</p>
+</header>
 
-<!-- Enhanced Hero -->
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <!-- Original content -->
-    <div class="live-stats">
-      <div class="stat"><i class="fa-brands fa-discord"></i> <span id="discordServers">500+</span> Servers</div>
-      <div class="stat"><i class="fa-solid fa-code"></i> <span id="projectsCompleted">50+</span> Projects</div>
-    </div>
-  </div>
-</section>
-
-<!-- Enhanced About -->
+<!-- About -->
 <section id="about">
-  <div class="about-grid">
-    <div class="about-content">
-      <!-- Original content -->
-      <div class="skill-bars">
-        <div class="skill-bar">
-          <span>JavaScript</span>
-          <div class="bar"><div class="progress" style="width: 90%"></div></div>
-        </div>
-        <!-- Add other skills -->
-      </div>
-    </div>
-  </div>
+  <h2>About Me</h2>
+  <p>I am a passionate developer with expertise in JavaScript and full-stack development. I have worked on 50+ projects, contributed to 500+ servers, and served over 5,000 users. My focus is on creating responsive, interactive, and visually stunning web experiences.</p>
 </section>
 
-<!-- Enhanced Projects -->
+<!-- Projects -->
 <section id="projects">
-  <div class="projects-grid">
-    <div class="project-card">
-      <div class="project-metrics">
-        <span>🚀 5000+ Users</span>
-        <span>⭐ 4.9/5 Rating</span>
-      </div>
-      <img loading="lazy" src="bot-screenshot.webp" class="project-img">
-      <!-- Original project info -->
-    </div>
+  <h2>My Projects</h2>
+  <div class="project-card">
+    <h3>Project 1</h3>
+    <p>Description of project 1. Innovative, interactive, and fully responsive.</p>
+  </div>
+  <div class="project-card">
+    <h3>Project 2</h3>
+    <p>Description of project 2. Built with the latest technologies and sleek UI.</p>
+  </div>
+  <div class="project-card">
+    <h3>Project 3</h3>
+    <p>Description of project 3. Optimized for performance on all devices.</p>
   </div>
 </section>
 
-<!-- Enhanced Contact -->
+<!-- Contact -->
 <section id="contact">
-  <div class="contact-form">
-    <!-- Original form -->
-    <div class="email-copy">
-      <span>shreyas.sawale09@gmail.com</span>
-      <button id="copyEmail" class="btn btn-small">
-        <i class="fa-regular fa-copy"></i>
-      </button>
-    </div>
-  </div>
+  <h2>Contact Me</h2>
+  <form>
+    <input type="text" placeholder="Name" required>
+    <input type="email" placeholder="Email" required>
+    <textarea placeholder="Message" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
 </section>
 
-<!-- Original Footer -->
-<footer>...</footer>
+<!-- Footer -->
+<footer>
+  &copy; 2025 Shreyas. All Rights Reserved.
+</footer>
 
 <script>
-// Consolidated JS
-window.addEventListener('load', () => {
-  document.querySelector('.loading-skeleton').style.display = 'none';
-  animateValue("discordServers", 0, 500, 2000);
-  animateValue("projectsCompleted", 0, 50, 1500);
-});
+  // Menu toggle
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('nav ul');
+  toggle.addEventListener('click', ()=>{ menu.classList.toggle('show'); });
 
-document.getElementById('copyEmail').addEventListener('click', () => {
-  navigator.clipboard.writeText('shreyas.sawale09@gmail.com')
-    .then(() => alert('Email copied!'))
-    .catch(err => console.error('Copy failed:', err));
-});
-
-// Original JS remains
+  // Optional: Smooth scroll for nav links
+  document.querySelectorAll('nav a').forEach(link=>{
+    link.addEventListener('click', e=>{
+      e.preventDefault();
+      document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+    });
+  });
 </script>
+
 </body>
 </html>
